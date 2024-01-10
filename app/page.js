@@ -17,23 +17,6 @@ export default function Home() {
     setOpenpageId(null);
   };
 
-  const handleOutsideClick = (e) => {
-    if (!e.target.closest("#")) {
-      handleClose();
-    }
-  };
-
-  useEffect(() => {
-    // Add click event listener to the document body
-    document.body.addEventListener('on', handleOutsideClick);
-
-    // Remove the event listener when the component unmounts
-    return () => {
-      document.body.removeEventListener('click', handleOutsideClick);
-    };
-  }, []); // Run this effect only once when the component mounts
-
-console.log(openPageId);
   return (
     <div className="relative overflow-x-hidden h-screen">
       <div className="flex justify-center my-10">
@@ -62,8 +45,7 @@ console.log(openPageId);
         </div>
       </div>
       {/* horizontal carousel */}
-      {openPageId != null && (
-        <div className="w-full h-screen absolute top-0 left-0 bg-white/60 backdrop-blur-sm flex justify-center items-center">
+        <div className={`w-full h-screen absolute top-0 left-0 bg-white/60 backdrop-blur-sm flex justify-center items-center ${openPageId != null ? "block" : "hidden"}`}>
           <Carousel
           id="openCarousel"
             opts={{
@@ -152,8 +134,6 @@ console.log(openPageId);
             <CarouselNext className="xl:scale-125 2xl:scale-150" />
           </Carousel>
         </div>
-
-      )}
 
 
     </div>
