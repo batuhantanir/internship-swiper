@@ -114,7 +114,7 @@ export default function Home() {
             </CarouselContent>
             <button className="
             absolute 
-            -top-12 
+            -top-[34px] 
             right-2 
             md:top-0 
             md:-right-12 
@@ -130,8 +130,8 @@ export default function Home() {
             onClick={handleClose}>
               X
             </button>
-            <CarouselPrevious className="xl:scale-125 2xl:scale-150" />
-            <CarouselNext className="xl:scale-125 2xl:scale-150" />
+            <CarouselPrevious className="hidden md:flex xl:scale-125 2xl:scale-150" />
+            <CarouselNext className="hidden md:flex xl:scale-125 2xl:scale-150" />
           </Carousel>
         </div>
 
