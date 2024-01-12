@@ -260,7 +260,7 @@ export default function Home() {
                     <div className="flex gap-3 overflow-hidden " id={post.comments[0]?.id} >
                       <span>{post.username}</span>
                       <span
-                        className="text-white/80 whitespace-wrap overflow-scroll h-fit max-h-12">
+                        className={`text-white/80 whitespace-wrap ${openFullCaption == index && "overflow-y-scroll"} h-fit max-h-12`}>
                         {(openFullCaption == index)
                           ?
                           post.caption
