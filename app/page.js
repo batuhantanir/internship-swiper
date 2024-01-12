@@ -13,7 +13,10 @@ export default function Home() {
   const [updatePosts, setUpdatePosts] = useState(posts)
   const [openCommentPage, setOpenCommentPage] = useState(undefined);
   const [addCommentInputValue, setAddCommentInputValue] = useState("");
+  const [openFullCaption, setOpenFullCaption] = useState(undefined);
   const [pageSize, setPageSize] = useState();
+  const openCarouselRef = useRef(null);
+  const commentRef = useRef(null);
 
   const handleClick = (index) => {
     setOpenpageId(index);
@@ -85,6 +88,33 @@ export default function Home() {
 
   }, [updatePosts])
 
+  useEffect(() => {
+    const handleOutsideClick = (e) => {
+      if (openCarouselRef.current && !openCarouselRef.current.contains(e.target)) {
+        // Tıklanan öğe modalRef içinde değilse, yani ref dışında tıklanılmışsa
+        // Pencereyi kapatma işlemi
+        if (openCommentPage == undefined && openCommentPage == null) {
+          handleClose();
+        }
+      }
+      if (commentRef.current && !commentRef.current.contains(e.target)) { 
+        setOpenCommentPage(undefined)
+      }
+    };
+
+    // Event listener'ı ekleyin
+    document.addEventListener('mousedown', handleOutsideClick);
+
+    // Temizlik işlemi
+    return () => {
+      document.removeEventListener('mousedown', handleOutsideClick);
+    };
+  }, [handleClose]);
+
+  const handleScroll = (api) => {
+    console.log(api.scrollProgress());
+  };
+
   return (
     <div className="flex flex-col relative overflow-x-hidden h-screen ">
       <div className="text-center mt-5">
@@ -103,20 +133,43 @@ export default function Home() {
                 (
                   updatePost == post && (
                     <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3 ">
-                      <button className="relative group" onClick={() => handleClick(index)}>
-                        <img
-                          src={post.image_url.src}
-                          className="w-full h-full group-hover:blur-[2px]"
-                          alt="Picture of the author"
-                          id={post.id}
-                        />
-                        {
-                          post.video_url && <MdOutlineVideoLibrary size={30} className=" absolute top-2 right-2 text-white drop-shadow-[0_2px_2px_rgba(0,0,0,1)] group-hover:drop-shadow-[0_2px_2px_rgba(0,0,0,0.7)]" />
-                        }
-                        <div className="absolute hidden  justify-center items-center w-full h-full top-0 left-0 font-semibold md:text-xl text-white group-hover:flex">
-                          click to view
+                      <div className={` bg-bgColor rounded-lg `}>
+                        <div className="flex justify-between items-end md:items-center p-2 ">
+                          <div className="flex items-center gap-3 text-white py-1">
+                            <img
+                              src={usersData.find((user) => user.username == post.username)?.profile_picture.src}
+                              className="rounded-full w-[40px] h-[40px] xl:w-[50px] xl:h-[50px] 2xl:w-[60px] 2xl:h-[60px]"
+                              alt="Profile of the author"
+                            />
+                            <div className="flex flex-col">
+                              <span className="xl:text-xl">{post.username}</span>
+                              <span className="text-white/70 text-sm font-light xl:text-lg">Lorem ipsum.</span>
+                            </div>
+                          </div>
+                          <button onClick={() => handleFollow(post.username)} className="text-white border h-fit w-fit rounded-lg px-3 py-1 transition-all ease-in-out duration-200 hover:text-black hover:bg-white/80">
+                            {(usersData.find((user) => user.username == post.username)?.follow == true)
+                              ?
+                              <span>Takip et</span>
+                              :
+                              <span>Takip ediliyor</span>
+                            }
+                          </button>
                         </div>
-                      </button>
+                        <button className="relative group" onClick={() => handleClick(index)}>
+                          <img
+                            src={post.image_url.src}
+                            className="w-full h-full group-hover:blur-[2px] transition-all duration-200 ease-in-out"
+                            alt="Picture of the author"
+                            id={post.id}
+                          />
+                          {
+                            post.video_url && <MdOutlineVideoLibrary size={30} className=" absolute top-2 right-2 text-white drop-shadow-[0_2px_2px_rgba(0,0,0,1)] group-hover:drop-shadow-[0_2px_2px_rgba(0,0,0,0.7)]" />
+                          }
+                          <div className="absolute hidden  justify-center items-center w-full h-full top-0 left-0 font-semibold md:text-xl text-white group-hover:flex">
+                            click to view
+                          </div>
+                        </button>
+                      </div>
                     </CarouselItem>)
                 ))
 
@@ -138,12 +191,13 @@ export default function Home() {
           }}
           orientation="vertical"
           className="w-full max-w-fit relative"
-
+          onScroll={handleScroll}
+          ref={openCarouselRef}
         >
-          <CarouselContent className={`${openCommentPage != undefined && 'blur-[2px]'} max-w-fit max-h-[95vh] md:max-h-[750px] mt-0 md:-mt-1`} >
+          <CarouselContent className={`${openCommentPage != undefined && 'blur-[2px]'} w-fit max-w-[500px] sm:w-[550px] max-h-[95vh] md:max-h-[750px] mt-0 md:-mt-1`} >
             {posts.map((post, index) => (
-              <CarouselItem key={index} className={` pt-1 basis-1 relative h-full `}>
-                <div className={` bg-bgColor rounded-lg h-full`}>
+              <CarouselItem key={index} className={` pt-1 basis-1 relative h-full`}>
+                <div className={` bg-bgColor rounded-lg h-full  `}>
                   <div className="flex justify-between items-end md:items-center p-2 xl:px-5">
                     <div className="flex items-center gap-3 text-white py-1">
                       <img
@@ -156,20 +210,23 @@ export default function Home() {
                         <span className="text-white/70 text-sm font-light xl:text-lg 2xl:text-xl">Lorem ipsum.</span>
                       </div>
                     </div>
-                    {
-                      !(usersData.find((user) => user.username == post.username)?.follow == true) && <button onClick={() => handleFollow(post.username)} className="text-white border h-fit w-fit rounded-lg px-3 py-1 ">
-                        <span className="text-xl">+</span> <span>Takip et</span>
-                      </button>
-                    }
+                    <button onClick={() => handleFollow(post.username)} className="text-white border h-fit w-fit rounded-lg px-3 py-1 transition-all ease-in-out duration-200 hover:bg-white/80">
+                      {(usersData.find((user) => user.username == post.username)?.follow == true)
+                        ?
+                        <span>Takip et</span>
+                        :
+                        <span>Takip ediliyor</span>
+                      }
+                    </button>
                   </div>
                   {
                     post.video_url
                       ?
-                        <iframe
-                          title="vimeo-player"
-                          src={post.video_url}
-                          className=" w-full h-[400px] md:h-[500px] xl:h-[500px]  top-0 left-0"
-                        ></iframe>
+                      <iframe
+                        title="player"
+                        src={post.video_url}
+                        className=" w-full h-[400px] md:h-[500px] xl:h-[500px]  top-0 left-0"
+                      ></iframe>
                       :
                       <img
                         src={post.image_url.src}
@@ -200,17 +257,16 @@ export default function Home() {
                     <div className="text-white">
                       <span>{post.likes} beğenme,</span> <button onClick={() => setOpenCommentPage(index)}>{post.comments.length} yorum</button>
                     </div>
-                    <div className="flex gap-3 overflow-hidden" id={post.comments[0]?.id} >
-                      <span>{post.comments[0]?.username}</span>
+                    <div className="flex gap-3 overflow-hidden " id={post.comments[0]?.id} >
+                      <span>{post.username}</span>
                       <span
-                        className="text-white/80 cursor-pointer"
-                        onClick={() => setOpenCommentPage(index)}>
-                        {post.comments[0]?.comment.length > 16 ?
+                        className="text-white/80 whitespace-wrap overflow-scroll h-fit max-h-12">
+                        {(post.caption.length > 2 && openFullCaption == undefined) ?
                           <>
-                            <span>{post.comments[0]?.comment.slice(0, 16)}... </span>
-                            <span className="text-cyan-200 hover:text-cyan-400">devamını gör</span>
+                            <span>{post.caption.slice(0, 2)}... </span>
+                            <span onClick={() => setOpenFullCaption(index)} className="text-cyan-200 hover:text-cyan-400 cursor-pointer">devamını gör</span>
                           </>
-                          : post.comments[0]?.comment} </span>
+                          : post.caption} </span>
                     </div>
                   </div>
                 </div>
@@ -240,7 +296,7 @@ export default function Home() {
           <CarouselPrevious className="hidden md:flex xl:scale-125 2xl:scale-150" />
           <CarouselNext className="hidden md:flex xl:scale-125 2xl:scale-150" />
           <div className={`${openCommentPage != undefined ? "flex " : "hidden"} flex-col  absolute justify-center  items-center  w-full h-screen text-white top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2`}>
-            <div className="relative bg-black w-10/12 rounded-md">
+            <div ref={commentRef} className="relative bg-black w-10/12 rounded-md">
               <div className="flex justify-between p-3 border-b border-input items-center">
                 <span>
                   {posts[openCommentPage]?.comments.length} yorum
@@ -263,27 +319,27 @@ export default function Home() {
               <div className={`flex flex-col px-3 overflow-y-auto overflow-x-hidden max-h-[400px]`}>
                 {posts[openCommentPage]?.comments.length != 0 ?
                   posts[openCommentPage]?.comments.map((comment, index) => (
-                  <div key={index} className="mt-2  ">
-                    <span>{comment.username}</span> <span className="text-white/80 max-w-[300px] h-fit whitespace-wrap">
-                      {comment.comment} </span>
-                  </div>))
+                    <div key={index} className="mt-2  ">
+                      <span>{comment.username}</span> <span className="text-white/80 max-w-[300px] h-fit whitespace-wrap">
+                        {comment.comment} </span>
+                    </div>))
                   :
                   <span>hiç yorum yok.</span>
                 }
               </div>
               <div>
                 <form onSubmit={handleSubmit}
-                  htmlFor="commentInput" id="commentLabel" 
+                  htmlFor="commentInput" id="commentLabel"
                   className="group flex items-center border pr-2 mx-4 rounded-full my-4">
-                  <input 
-                  id="commentInput" 
-                  placeholder="yorum ekle.." 
-                  type="text" 
-                  onChange={(e) => setAddCommentInputValue(e.target.value)} 
-                  value={addCommentInputValue} 
-                  className="bg-transparent flex-1 pl-2 py-2 outline-none focus:group:bg-white" />
+                  <input
+                    id="commentInput"
+                    placeholder="yorum ekle.."
+                    type="text"
+                    onChange={(e) => setAddCommentInputValue(e.target.value)}
+                    value={addCommentInputValue}
+                    className="bg-transparent flex-1 pl-2 py-2 outline-none focus:group:bg-white" />
                   <button type="submit" className={`disabled:hidden`} disabled={addCommentInputValue == "" && true} >
-                    <BiUpArrowAlt size={25}/>
+                    <BiUpArrowAlt size={25} />
                   </button>
                 </form>
               </div>

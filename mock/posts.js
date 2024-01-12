@@ -26,7 +26,7 @@ const posts = [
     {
         "id": 2,
         "username": "traveler123",
-        "caption": "Yeni yerler keşfetmek her zaman heyecan verici! 🌍 #travel",
+        "caption": "Yeni yerler keşfetmek her zaman heyecan verici! asdbjas asdh asjkldhklash lkdas dasıodhıoashdıoashıo dıoas ıdo asıdh ıoasdıo asıodhıası doha ıosd ıoashdo asooıasoıdh ıoa soıd hasıohd ıoasıo dhaoıs dhoıashıo doaı s 🌍 #travel",
         "category": "travel",
         "image_url": traveler,
         "likes": 85,
