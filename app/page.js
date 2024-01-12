@@ -67,20 +67,27 @@ export default function Home() {
   }, [posts]);
 
   useEffect(() => {
+    const textShadow = "[text-shadow:1px_1px_2px_rgba(0,255,68,0.6)]";
     document.querySelector("#all").parentElement.childNodes.forEach(node => {
-      node.classList.remove("border-b-2")
+      node.classList?.remove("border-b-2")
+      node.classList?.remove(textShadow)
+      node?.classList.add("scale-105")
     })
     if (updatePosts.length == posts.length) {
       document.querySelector(`#all`)?.classList.add("border-b-2")
+      document.querySelector(`#all`)?.classList.add(textShadow)
     } else {
       document.querySelector(`#${updatePosts[0].category}`)?.classList.add("border-b-2")
+      document.querySelector(`#${updatePosts[0].category}`)?.classList.add(textShadow)
+      document.querySelector(`#${updatePosts[0].category}`)?.classList.add("scale-105")
+
     }
 
   }, [updatePosts])
 
   return (
-    <div className="flex flex-col relative overflow-x-hidden h-screen">
-      <div className="text-center">
+    <div className="flex flex-col relative overflow-x-hidden h-screen ">
+      <div className="text-center mt-5">
         {categories?.map((category, index) => (
           <button id={category} key={index} onClick={() => handleCategory(category)} className="px-2 [text-shadow:1px_1px_2px_rgba(0,0,0,0.6)]">
             {category}
