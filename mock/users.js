@@ -7,43 +7,61 @@ import artistic_soul from '@/assets/users/fdd404f8-261d-4acb-a248-37a7f13a1c2c.j
 const users = [
     {
         "username": "batuhantanir",
-        "profile_picture": batuhantanir
+        "profile_picture": batuhantanir,
+        "follow":false,
     },
     {
         "username": "traveler123",
-        "profile_picture": batuhantanir
+        "profile_picture": batuhantanir,
+        "follow":true
     },
     {
         "username": "coffeelover",
-        "profile_picture": coffeelover
+        "profile_picture": coffeelover,
+        "follow":false
     },
     {
         "username": "fitnessfreak",
-        "profile_picture": coffeelover
+        "profile_picture": coffeelover,
+        "follow":true,
     },
     {
         "username": "musiclover",
-        "profile_picture": musiclover
+        "profile_picture": musiclover,
+        "follow":false,
     },
     {
         "username": "bookworm",
-        "profile_picture": musiclover
+        "profile_picture": musiclover,
+        "follow":false
     },
     {
         "username": "fashionista",
-        "profile_picture": fashionista
+        "profile_picture": fashionista,
+        "follow":false
     },
     {
         "username": "petlover",
-        "profile_picture": fashionista
+        "profile_picture": fashionista,
+        "follow":false
     },
     {
         "username": "artistic_soul",
-        "profile_picture": artistic_soul
+        "profile_picture": artistic_soul,
+        "follow":false
     },
     {
         "username": "throwbackmemories",
-        "profile_picture": artistic_soul
+        "profile_picture": artistic_soul,
+        "follow":false
+    },{
+        "username": "foodie",
+        "profile_picture": artistic_soul,
+        "follow":false
+    },{
+        "username": "artenthusiast",
+        "profile_picture": artistic_soul,
+        "follow":false
     }
 ]
 export default users;

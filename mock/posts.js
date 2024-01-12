@@ -8,27 +8,18 @@ import fashionista from '@/assets/image/4be28fba-4961-4994-845b-feabcdb2800b.jpg
 import pets from '@/assets/image/b39c1ca8-de44-496e-8d4f-887006cefdd5.jpg'
 import art from '@/assets/image/a0d42d0e-5444-4164-b3d0-6ea28e4d3a39.jpg'
 import throwback from '@/assets/image/16359f96-f0fe-4bdf-9ec6-e63a596e83fa.jpg'
+import artistthumbnail from '@/assets/image/artistthumbnail.jpg'
+import foodthumbnail from '@/assets/image/foodthumbnail.jpg'
 
 const posts = [
     {
         "id": 1,
         "username": "batuhantanir",
         "caption": "Günbatımında huzurlu anlar. 🌅 #sunset #naturelover",
+        "category": "nature",
         "image_url": sunset,
         "likes": 120,
         "comments": [
-            {
-                "id": 101,
-                "username": "naturefan",
-                "comment": "Harika bir manzara!",
-                "timestamp": "2024-01-10T18:15:00"
-            },
-            {
-                "id": 102,
-                "username": "outdoorsy",
-                "comment": "Doğaya olan sevgim hiç bitmeyecek.",
-                "timestamp": "2024-01-10T18:30:00"
-            }
         ],
         "timestamp": "2024-01-10T17:45:00"
     },
@@ -36,6 +27,7 @@ const posts = [
         "id": 2,
         "username": "traveler123",
         "caption": "Yeni yerler keşfetmek her zaman heyecan verici! 🌍 #travel",
+        "category": "travel",
         "image_url": traveler,
         "likes": 85,
         "comments": [
@@ -58,6 +50,7 @@ const posts = [
         "id": 3,
         "username": "coffeelover",
         "caption": "Kahve zamanı! ☕️ #coffeetime",
+        "category": "lifestyle",
         "image_url": coffeelover,
         "likes": 200,
         "comments": [
@@ -80,6 +73,7 @@ const posts = [
         "id": 4,
         "username": "fitnessfreak",
         "caption": "Spor yapmanın keyfini çıkartıyorum! 💪 #fitness",
+        "category": "health",
         "image_url": fitness,
         "likes": 150,
         "comments": [
@@ -102,6 +96,7 @@ const posts = [
         "id": 5,
         "username": "musiclover",
         "caption": "Müzik ruhun gıdasıdır! 🎶 #music",
+        "category": "music",
         "image_url": music,
         "likes": 180,
         "comments": [
@@ -124,6 +119,7 @@ const posts = [
         "id": 6,
         "username": "bookworm",
         "caption": "Bir kitapla baş başa kalmak. 📚 #reading",
+        "category": "books",
         "image_url": bookworm,
         "likes": 100,
         "comments": [
@@ -146,6 +142,7 @@ const posts = [
         "id": 7,
         "username": "fashionista",
         "caption": "Moda her zaman bir tutkudur! 👗 #fashion",
+        "category": "fashion",
         "image_url": fashionista,
         "likes": 220,
         "comments": [
@@ -168,6 +165,7 @@ const posts = [
         "id": 8,
         "username": "petlover",
         "caption": "Evimizdeki küçük dostlar. 🐾 #pets",
+        "category": "pets",
         "image_url": pets,
         "likes": 130,
         "comments": [
@@ -190,6 +188,7 @@ const posts = [
         "id": 9,
         "username": "artistic_soul",
         "caption": "Sanatın gücüne hayranım! 🎨 #art",
+        "category": "art",
         "image_url": art,
         "likes": 190,
         "comments": [
@@ -212,6 +211,7 @@ const posts = [
         "id": 10,
         "username": "throwbackmemories",
         "caption": "Güzel anılar biriktirmek önemli! 📸 #throwback",
+        "category": "memories",
         "image_url": throwback,
         "likes": 160,
         "comments": [
@@ -229,6 +229,52 @@ const posts = [
             }
         ],
         "timestamp": "2024-01-19T20:45:00"
+    }, {
+        "id": 11,
+        "username": "foodie",
+        "caption": "Lezzetli bir yemek tarifi! 🍲 #cooking",
+        "image_url": foodthumbnail,
+        "video_url": 'https://player.vimeo.com/video/902145852?badge=0?autopause=0?player_id=0?app_id=58479',
+        "category": "food",
+        "likes": 250,
+        "comments": [
+            {
+                "id": 1101,
+                "username": "chef",
+                "comment": "Bu tarifi deneyeceğim!",
+                "timestamp": "2024-01-20T14:30:00"
+            },
+            {
+                "id": 1102,
+                "username": "foodlover",
+                "comment": "Harika görünüyor!",
+                "timestamp": "2024-01-20T14:45:00"
+            }
+        ],
+        "timestamp": "2024-01-20T14:15:00"
+    }, {
+        "id": 12,
+        "username": "artenthusiast",
+        "caption": "Ressamın çalışma süreci! 🎨 #art",
+        "image_url": artistthumbnail,
+        "video_url": "https://player.vimeo.com/video/902145607?h=0bd52ddc92",
+        "category": "art",
+        "likes": 300,
+        "comments": [
+            {
+                "id": 1201,
+                "username": "artcritic",
+                "comment": "Bu sanat eseri beni etkiledi!",
+                "timestamp": "2024-01-21T17:00:00"
+            },
+            {
+                "id": 1202,
+                "username": "creativemind",
+                "comment": "Ressamın yeteneği olağanüstü!",
+                "timestamp": "2024-01-21T17:15:00"
+            }
+        ],
+        "timestamp": "2024-01-21T16:45:00"
     }
 ]
 
