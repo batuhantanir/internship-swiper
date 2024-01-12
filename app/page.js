@@ -97,7 +97,7 @@ export default function Home() {
           handleClose();
         }
       }
-      if (commentRef.current && !commentRef.current.contains(e.target)) { 
+      if (commentRef.current && !commentRef.current.contains(e.target)) {
         setOpenCommentPage(undefined)
       }
     };
@@ -261,12 +261,15 @@ export default function Home() {
                       <span>{post.username}</span>
                       <span
                         className="text-white/80 whitespace-wrap overflow-scroll h-fit max-h-12">
-                        {(post.caption.length > 2 && openFullCaption == undefined) ?
+                        {(openFullCaption == index)
+                          ?
+                          post.caption
+                          :
                           <>
                             <span>{post.caption.slice(0, 2)}... </span>
-                            <span onClick={() => setOpenFullCaption(index)} className="text-cyan-200 hover:text-cyan-400 cursor-pointer">devamını gör</span>
+                            <span onClick={() => { setOpenFullCaption(index); console.log(openFullCaption) }} className="text-cyan-200 hover:text-cyan-400 cursor-pointer">devamını gör</span>
                           </>
-                          : post.caption} </span>
+                        } </span>
                     </div>
                   </div>
                 </div>
