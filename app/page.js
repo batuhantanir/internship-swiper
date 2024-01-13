@@ -3,7 +3,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import posts from '@/mock/posts';
 import users from '@/mock/users'
-import { BiHeart, BiBookmark, BiComment, BiShare, BiUpArrowAlt, BiSolidComment,BiSolidBookmark } from "react-icons/bi";
+import { BiHeart, BiBookmark, BiComment, BiShare, BiUpArrowAlt, BiSolidComment, BiSolidBookmark } from "react-icons/bi";
 import { AiFillHeart } from "react-icons/ai";
 import { MdOutlineVideoLibrary } from "react-icons/md";
 import { FaPlus, FaCheck } from "react-icons/fa6";
@@ -17,7 +17,7 @@ export default function Home() {
   const [openCommentPage, setOpenCommentPage] = useState(undefined);
   const [addCommentInputValue, setAddCommentInputValue] = useState("");
   const [openFullCaption, setOpenFullCaption] = useState(undefined);
-  const [pageSize, setPageSize] = useState();
+  const [liked, setLiked] = useState(false);
   const openCarouselRef = useRef(null);
   const commentRef = useRef(null);
 
@@ -39,19 +39,12 @@ export default function Home() {
     );
   }
 
-  const handleLiked = (index) => {
+  const handleSave = (index) => {
     setMainPosts((prevPosts) =>
       prevPosts.map((post, i) =>
-        i === index ? { ...post, isLiked: !post.isLiked } : post
+        i === index ? { ...post, saveBook: !post.saveBook } : post
       )
     );
-  };
-  const handleSave = (index) =>{
-    setMainPosts((prevPosts) =>
-    prevPosts.map((post, i) =>
-      i === index ? { ...post, saveBook: !post.saveBook } : post
-    )
-  );
   }
 
   const handleCategory = (category) => {
@@ -75,6 +68,22 @@ export default function Home() {
       setAddCommentInputValue("");
     }
   }
+
+  const handleLiked = (index) => {
+    if (mainPosts[index]?.isLiked == false) {
+      setLiked(true);
+    }
+
+    // Beğeni animasyonunu geri almak için bir süre bekleyebilirsiniz.
+    setTimeout(() => {
+      setLiked(false);
+    }, 1000);
+    setMainPosts((prevPosts) =>
+      prevPosts.map((post, i) =>
+        i === index ? { ...post, isLiked: !post.isLiked } : post
+      )
+    );
+  };
 
   useEffect(() => {
     const uniqueCategories = new Set(categories);  // Kategorileri benzersiz hale getirir
@@ -212,7 +221,7 @@ export default function Home() {
           onScroll
           ref={openCarouselRef}
         >
-          <CarouselContent className={`${openCommentPage != undefined && 'blur-[2px]'}  w-fit max-w-[500px] sm:w-[550px] max-h-[95vh] md:max-h-[750px] mt-0 md:-mt-1`} >
+          <CarouselContent className={`${openCommentPage != undefined && 'blur-[2px]'}  w-full max-w-[500px] sm:w-[550px] max-h-[95vh] md:max-h-[750px] mt-0 md:-mt-1`} >
             {mainPosts.map((post, index) => (
               <CarouselItem key={index} className={` pt-1 basis-1 relative h-full`}>
                 <div className={` bg-bgColor rounded-lg h-full  `}>
@@ -237,22 +246,39 @@ export default function Home() {
                       }
                     </button>
                   </div>
-                  {
-                    post.video_url
-                      ?
-                      <iframe
-                        title="player"
-                        src={post.video_url}
-                        className=" w-full h-[300px] md:h-[400px]  top-0 left-0"
-                      ></iframe>
-                      :
-                      <img
-                        src={post.image_url.src}
-                        className="w-full h-[400px] md:h-[500px] xl:h-[500px] "
-                        alt="Picture of the author"
-                        id={post.id}
-                      />
-                  }
+                  <div className={`post relative `} onDoubleClick={() => handleLiked(index)}>
+                    {
+                      post.video_url
+                        ?
+                        <iframe
+                          title="player"
+                          src={post.video_url}
+                          className="likecontainer w-full h-[300px] md:h-[400px]  top-0 left-0 cursor-pointer"
+                          id={index}
+                        ></iframe>
+                        :
+                        <img
+                          src={post.image_url.src}
+                          className="likecontainer w-full h-[400px] md:h-[500px] xl:h-[500px] cursor-pointer"
+                          alt="Picture of the author"
+                          id={index}
+                          draggable={false}
+                        />
+                    }
+                      <AiFillHeart
+                      className={`
+                      ${liked ? 'scale-[10]' : 'scale-0'}
+                       like-animation
+                       absolute
+                       transition-all
+                       duration-300 
+                       top-1/2 left-1/2
+                       transform
+                       -translate-x-1/2
+                       -translate-y-1/2 text-red-600
+                       opacity-80
+                       `} />
+                  </div>
                   <div className="flex flex-col gap-3 text-white p-2 ">
                     <div className="flex justify-between xl:text-xl 2xl:text-2xl">
                       <div className="flex gap-3 ">
@@ -287,7 +313,7 @@ export default function Home() {
                           :
                           <>
                             <span>{post.caption.slice(0, 18)}... </span>
-                            <span onClick={() => { setOpenFullCaption(index)}} className="text-cyan-200 hover:text-cyan-400 cursor-pointer">devamını gör</span>
+                            <span onClick={() => { setOpenFullCaption(index) }} className="text-cyan-200 hover:text-cyan-400 cursor-pointer">devamını gör</span>
                           </>
                         } </span>
                     </div>
