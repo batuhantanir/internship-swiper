@@ -141,7 +141,7 @@ export default function Home() {
 
 
   return (
-    <div className="flex flex-col relative overflow-x-hidden h-screen ">
+    <div className="flex flex-col relative overflow-x-hidden min-h-screen ">
       <div className="text-center mt-5">
         {categories?.map((category, index) => (
           <button id={category} key={index} onClick={() => handleCategory(category)} className="px-2 [text-shadow:1px_1px_2px_rgba(0,0,0,0.6)]">
