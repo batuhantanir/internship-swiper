@@ -19,6 +19,7 @@ const posts = [
         "category": "nature",
         "isLiked": true,
         "image_url": sunset,
+        "saveBook": false,
         "likes": 120,
         "comments": [
         ],
@@ -30,6 +31,7 @@ const posts = [
         "caption": "Yeni yerler keşfetmek her zaman heyecan verici! asdbjas asdh asjkldhklash lkdas dasıodhıoashdıoashıo dıoas ıdo asıdh ıoasdıo asıodhıası doha ıosd ıoashdo asooıasoıdh ıoa soıd hasıohd ıoasıo dhaoıs dhoıashıo doaı s 🌍 #travel",
         "category": "travel",
         "image_url": traveler,
+        "saveBook": true,
         "likes": 85,
         "isLiked": false,
         "comments": [
@@ -53,6 +55,7 @@ const posts = [
         "username": "coffeelover",
         "caption": "Kahve zamanı! ☕️ #coffeetime",
         "category": "lifestyle",
+        "saveBook": false,
         "isLiked": false,
         "image_url": coffeelover,
         "likes": 200,
@@ -79,6 +82,7 @@ const posts = [
         "category": "health",
         "image_url": fitness,
         "isLiked": true,
+        "saveBook": false,
         "likes": 150,
         "comments": [
             {
@@ -103,6 +107,7 @@ const posts = [
         "category": "music",
         "image_url": music,
         "likes": 180,
+        "saveBook": false,
         "isLiked": false,
         "comments": [
             {
@@ -127,6 +132,7 @@ const posts = [
         "category": "books",
         "image_url": bookworm,
         "likes": 100,
+        "saveBook": false,
         "isLiked": false,
         "comments": [
             {
@@ -150,6 +156,7 @@ const posts = [
         "caption": "Moda her zaman bir tutkudur! 👗 #fashion",
         "category": "fashion",
         "image_url": fashionista,
+        "saveBook": false,
         "likes": 220,
         "isLiked": false,
         "comments": [
@@ -174,6 +181,7 @@ const posts = [
         "caption": "Evimizdeki küçük dostlar. 🐾 #pets",
         "category": "pets",
         "image_url": pets,
+        "saveBook": false,
         "isLiked": false,
         "likes": 130,
         "comments": [
@@ -199,6 +207,7 @@ const posts = [
         "category": "art",
         "image_url": art,
         "likes": 190,
+        "saveBook": false,
         "isLiked": false,
         "comments": [
             {
@@ -223,6 +232,7 @@ const posts = [
         "category": "memories",
         "image_url": throwback,
         "likes": 160,
+        "saveBook": true,
         "isLiked": false,
         "comments": [
             {
@@ -239,7 +249,8 @@ const posts = [
             }
         ],
         "timestamp": "2024-01-19T20:45:00"
-    }, {
+    }, 
+    {
         "id": 11,
         "username": "foodie",
         "caption": "Lezzetli bir yemek tarifi! 🍲 #cooking",
@@ -247,6 +258,7 @@ const posts = [
         "video_url": 'https://player.vimeo.com/video/902145852?badge=0?autopause=0?player_id=0?app_id=58479',
         "category": "food",
         "likes": 250,
+        "saveBook": true,
         "isLiked": false,
         "comments": [
             {
@@ -272,6 +284,7 @@ const posts = [
         "category": "art",
         "likes": 300,
         "isLiked": false,
+        "saveBook": true,
         "comments": [
             {
                 "id": 1201,
