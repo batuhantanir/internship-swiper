@@ -4,6 +4,7 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 import posts from '@/mock/posts';
 import users from '@/mock/users'
 import { BiHeart, BiBookmark, BiComment, BiShare, BiUpArrowAlt } from "react-icons/bi";
+import { AiFillHeart } from "react-icons/ai";
 import { MdOutlineVideoLibrary } from "react-icons/md";
 
 export default function Home() {
@@ -11,6 +12,7 @@ export default function Home() {
   const [categories, setCategories] = useState(["all"]);
   const [usersData, setUsersData] = useState(users)
   const [updatePosts, setUpdatePosts] = useState(posts)
+  const [mainPosts, setMainPosts] = useState(posts)
   const [openCommentPage, setOpenCommentPage] = useState(undefined);
   const [addCommentInputValue, setAddCommentInputValue] = useState("");
   const [openFullCaption, setOpenFullCaption] = useState(undefined);
@@ -33,6 +35,10 @@ export default function Home() {
         user.username === userName ? { ...user, follow: !user.follow } : user
       )
     );
+  }
+
+  const handleLiked = (index) =>{
+    setMainPosts((prevPosts) => prevPosts.slice(index,1, !prevPosts[index]?.isLiked))
   }
 
   const handleCategory = (category) => {
@@ -238,27 +244,27 @@ export default function Home() {
                   <div className="flex flex-col gap-3 text-white p-2 ">
                     <div className="flex justify-between xl:text-xl 2xl:text-2xl">
                       <div className="flex gap-3 ">
-                        <button className="cursor-pointer">
-                          <BiHeart className="md:stroke-1" />
+                        <button className="cursor-pointer active:scale-90" onClick={()=>handleLiked(index)}>
+                          {post.isLiked ? <AiFillHeart className="md:stroke-1 stroke-red-500  text-red-500" size={24} /> : <BiHeart className="md:stroke-1" size={24} />}
+                        </button>
+                        <button className="cursor-pointer" onClick={() => setOpenCommentPage(index)}>
+                          <BiComment className="md:stroke-1" size={24} />
                         </button>
                         <button className="cursor-pointer">
-                          <BiComment className="md:stroke-1" />
-                        </button>
-                        <button className="cursor-pointer">
-                          <BiShare className="md:stroke-1" />
+                          <BiShare className="md:stroke-1" size={24} />
                         </button>
                       </div>
                       <div>
                         <button className="cursor-pointer">
-                          <BiBookmark className="md:stroke-1" />
+                          <BiBookmark className="md:stroke-1" size={24} />
                         </button >
                       </div>
                     </div>
                     <div className="text-white">
                       <span>{post.likes} beğenme,</span> <button onClick={() => setOpenCommentPage(index)}>{post.comments.length} yorum</button>
                     </div>
-                    <div className="flex gap-3 overflow-hidden " id={post.comments[0]?.id} >
-                      <span>{post.username}</span>
+                    <div className=" overflow-hidden " id={post.comments[0]?.id} >
+                      <span className="mr-2">{post.username}</span>
                       <span
                         className={`text-white/80 whitespace-wrap ${openFullCaption == index && "overflow-y-scroll"} h-fit max-h-12`}>
                         {(openFullCaption == index)

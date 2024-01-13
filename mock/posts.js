@@ -17,6 +17,7 @@ const posts = [
         "username": "batuhantanir",
         "caption": "Günbatımında huzurlu anlar. 🌅 #sunset #naturelover",
         "category": "nature",
+        "isLiked": true,
         "image_url": sunset,
         "likes": 120,
         "comments": [
@@ -30,6 +31,7 @@ const posts = [
         "category": "travel",
         "image_url": traveler,
         "likes": 85,
+        "isLiked": false,
         "comments": [
             {
                 "id": 201,
@@ -51,6 +53,7 @@ const posts = [
         "username": "coffeelover",
         "caption": "Kahve zamanı! ☕️ #coffeetime",
         "category": "lifestyle",
+        "isLiked": false,
         "image_url": coffeelover,
         "likes": 200,
         "comments": [
@@ -75,6 +78,7 @@ const posts = [
         "caption": "Spor yapmanın keyfini çıkartıyorum! 💪 #fitness",
         "category": "health",
         "image_url": fitness,
+        "isLiked": true,
         "likes": 150,
         "comments": [
             {
@@ -99,6 +103,7 @@ const posts = [
         "category": "music",
         "image_url": music,
         "likes": 180,
+        "isLiked": false,
         "comments": [
             {
                 "id": 501,
@@ -122,6 +127,7 @@ const posts = [
         "category": "books",
         "image_url": bookworm,
         "likes": 100,
+        "isLiked": false,
         "comments": [
             {
                 "id": 601,
@@ -145,6 +151,7 @@ const posts = [
         "category": "fashion",
         "image_url": fashionista,
         "likes": 220,
+        "isLiked": false,
         "comments": [
             {
                 "id": 701,
@@ -167,6 +174,7 @@ const posts = [
         "caption": "Evimizdeki küçük dostlar. 🐾 #pets",
         "category": "pets",
         "image_url": pets,
+        "isLiked": false,
         "likes": 130,
         "comments": [
             {
@@ -191,6 +199,7 @@ const posts = [
         "category": "art",
         "image_url": art,
         "likes": 190,
+        "isLiked": false,
         "comments": [
             {
                 "id": 901,
@@ -214,6 +223,7 @@ const posts = [
         "category": "memories",
         "image_url": throwback,
         "likes": 160,
+        "isLiked": false,
         "comments": [
             {
                 "id": 1001,
@@ -237,6 +247,7 @@ const posts = [
         "video_url": 'https://player.vimeo.com/video/902145852?badge=0?autopause=0?player_id=0?app_id=58479',
         "category": "food",
         "likes": 250,
+        "isLiked": false,
         "comments": [
             {
                 "id": 1101,
@@ -260,6 +271,7 @@ const posts = [
         "video_url": "https://player.vimeo.com/video/902145607?h=0bd52ddc92",
         "category": "art",
         "likes": 300,
+        "isLiked": false,
         "comments": [
             {
                 "id": 1201,

@@ -44,7 +44,6 @@ const Carousel = React.forwardRef(
     const [canScrollNext, setCanScrollNext] = React.useState(false);
 
     const onSelect = React.useCallback((api) => {
-      console.log(api);
       if (!api) {
         return;
       }
@@ -144,7 +143,7 @@ const Carousel = React.forwardRef(
         <div
           ref={ref}
           onKeyDownCapture={handleKeyDown}
-          className={cn("relative", className)}
+          className={cn("relative ", className)}
           role="region"
           aria-roledescription="carousel"
           {...props}
