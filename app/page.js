@@ -127,7 +127,7 @@ export default function Home() {
   }, [handleClose]);
 
   const handleFocus = (index) => {
-    document.querySelectorAll(".commentInput")[index]?.focus();
+    document?.querySelectorAll(".commentInput")[index]?.focus();
   }
 
   const timeStamp = (targetDate) => {
