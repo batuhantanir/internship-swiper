@@ -270,7 +270,7 @@ export default function Home() {
                     {
                       post.video_url
                         ?
-                        <VideoPlayer url={post.video_url} index={index} handleLiked={handleLiked}/>
+                        <VideoPlayer url={post.video_url} index={index} handleLiked={handleLiked} type={post.type}/>
                         :
                         <img
                           src={post.image_url.src}
@@ -278,6 +278,7 @@ export default function Home() {
                           alt="Picture of the author"
                           id={index}
                           draggable={false}
+                          onDoubleClick={() => handleLiked(index)}
                         />
                     }
                     <AiFillHeart

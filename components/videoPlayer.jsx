@@ -83,24 +83,38 @@ const VideoPlayer = ({ url, index, handleLiked }) => {
     };
 
     useEffect(() => {
-        const video = videoRef.current;
+        const video = videoRef?.current;
+        console.log(video);
         setDuration(video ? video.duration : 0);
     }, []);
 
     return (
-        <div className="relative rounded-lg overflow-hidden shadow-lg" onClick={() => { handleDoubleClick(); }}>
-            <video
-                className="w-full h-full cursor-pointer"
-                id={`video-${index}`}
-                ref={videoRef}
-                onEnded={() => setPlaying(false)}
-                onTimeUpdate={handleTimeUpdate}
-                onClick={handlePlayPause}
-            >
-                <source src={url} type="video/mp4" />
-                Your browser does not support the video tag.
-            </video>
-            {currentTime !== duration && (
+        <div className="relative rounded-lg w-full h-full overflow-hidden shadow-lg" onClick={url.includes(".com") == false && handleDoubleClick}>
+            {
+                url.includes(".com")
+                    ?
+                    <div className='w-full h-full'>
+                        <iframe
+                            ref={videoRef}
+                            src={url}
+                            className='w-full h-full'
+                            frameborder="0"></iframe>
+                    </div>
+                    :
+                    <video
+                        className="w-full h-full cursor-pointer"
+                        id={`video-${index}`}
+                        ref={videoRef}
+                        onEnded={() => setPlaying(false)}
+                        onTimeUpdate={handleTimeUpdate}
+                        onClick={handlePlayPause}
+                    > <source src={url} type="video/webm" />
+                        Your browser does not support the video tag.
+
+                    </video>
+
+            }
+            {currentTime !== duration && url.includes(".com") == false && (
                 <div className="absolute bottom-5 left-2 right-0 " onClick={handlePlayPause}>
                     {playing ? (
                         <FaPause className="text-white text-4xl cursor-pointer drop-shadow-sm" />
@@ -109,7 +123,7 @@ const VideoPlayer = ({ url, index, handleLiked }) => {
                     )}
                 </div>
             )}
-            {url && (
+            {url && url.includes(".com") == false && (
                 <div className="absolute bottom-0 left-0 right-0 h-3 bg-gray-300" onClick={handleSeek} ref={progressRef}>
                     <div
                         className="h-full bg-gray-500"
@@ -117,7 +131,7 @@ const VideoPlayer = ({ url, index, handleLiked }) => {
                     />
                 </div>
             )}
-            {url && (
+            {url && url.includes(".com") == false && (
                 <div className="absolute bottom-5 right-2 flex items-center space-x-2 drop-shadow-sm">
                     <span className="text-white text-sm drop-shadow-sm">{currentTime != NaN && formatTime(currentTime)}</span>
                     <span className="text-white text-sm drop-shadow-sm">/</span>
@@ -146,7 +160,7 @@ const VideoPlayer = ({ url, index, handleLiked }) => {
                     </div>
                 </div>
             )}
-            {currentTime === duration && (
+            {currentTime === duration && url.includes(".com") == false && (
                 <div className="absolute bottom-5 left-2 drop-shadow-sm">
                     <div
                         className="cursor-pointer drop-shadow-2xl"
