@@ -25,13 +25,13 @@ export default function Home() {
     setOpenpageId(index);
   }
 
-  const handlePlayAndStop = (index) => {
-    const videos = document.querySelectorAll(".video")
-    videos.forEach(video =>
-      video.id == `video-${index}` &&
-        video.paused ? video.play() : video.pause())
+  // const handlePlayAndStop = (index) => {
+  //   const videos = document.querySelectorAll(".video")
+  //   videos.forEach(video =>
+  //     video.id == `video-${index}` &&
+  //       video.paused ? video.play() : video.pause())
 
-  }
+  // }
 
   const handleClose = () => {
     setOpenpageId(null);
