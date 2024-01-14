@@ -291,9 +291,7 @@ export default function Home() {
                         />
                     }
                     <div className="absolute top-1/2 left-1/2 w-full h-full transform -translate-x-1/2 -translate-y-1/2" onClick={() => handlePlayAndStop(index)} onDoubleClick={() => handleLiked(index)}></div>
-                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                      { document.querySelector(`#video-${index}`)?.paused && <BiHeart className="md:stroke-1" size={100} /> }
-                    </div>
+
                     <AiFillHeart
                       className={`
                       ${liked == index ? 'scale-[10]' : 'scale-0'}
