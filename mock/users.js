@@ -1,8 +1,8 @@
-import batuhantanir from '@/assets/users/8789ea39-09f0-4067-8e64-494d11e32952.jpg'
-import coffeelover from '@/assets/users/21ac96a6-8331-478b-af4f-5cec6034d11a.jpg'
-import musiclover from '@/assets/users/75467f8f-f72f-4cb0-b9bc-7622f8caec88.jpg'
-import fashionista from '@/assets/users/d9c352ed-daf9-4874-a480-6363a5d8467d.jpg'
-import artistic_soul from '@/assets/users/fdd404f8-261d-4acb-a248-37a7f13a1c2c.jpg'
+import batuhantanir from '@/public/assets/users/8789ea39-09f0-4067-8e64-494d11e32952.jpg'
+import coffeelover from '@/public/assets/users/21ac96a6-8331-478b-af4f-5cec6034d11a.jpg'
+import musiclover from '@/public/assets/users/75467f8f-f72f-4cb0-b9bc-7622f8caec88.jpg'
+import fashionista from '@/public/assets/users/d9c352ed-daf9-4874-a480-6363a5d8467d.jpg'
+import artistic_soul from '@/public/assets/users/fdd404f8-261d-4acb-a248-37a7f13a1c2c.jpg'
 
 const users = [
     {

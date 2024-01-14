@@ -1,15 +1,15 @@
-import sunset from '@/assets/image/e2d22020-3246-4f14-848a-b8fdcc83a151.jpg'
-import traveler from '@/assets/image/6dee96b3-b6cc-4b50-81bf-35f2a76e5a7e.jpg'
-import coffeelover from '@/assets/image/e49eaf8f-d9c6-4b99-b8bc-576de8646f73.jpg'
-import fitness from '@/assets/image/ee773997-b6d3-4860-b734-3de8e299ac69.jpg'
-import music from '@/assets/image/15f8e6c2-f4ee-468f-beb8-5f82817b6598.jpg'
-import bookworm from '@/assets/image/1b6d7a8f-e9d1-4188-a9e7-b1b28eaf8fbf.jpg'
-import fashionista from '@/assets/image/4be28fba-4961-4994-845b-feabcdb2800b.jpg'
-import pets from '@/assets/image/b39c1ca8-de44-496e-8d4f-887006cefdd5.jpg'
-import art from '@/assets/image/a0d42d0e-5444-4164-b3d0-6ea28e4d3a39.jpg'
-import throwback from '@/assets/image/16359f96-f0fe-4bdf-9ec6-e63a596e83fa.jpg'
-import artistthumbnail from '@/assets/image/artistthumbnail.jpg'
-import foodthumbnail from '@/assets/image/foodthumbnail.jpg'
+import sunset from '@/public/assets/image/e2d22020-3246-4f14-848a-b8fdcc83a151.jpg'
+import traveler from '@/public/assets/image/6dee96b3-b6cc-4b50-81bf-35f2a76e5a7e.jpg'
+import coffeelover from '@/public/assets/image/e49eaf8f-d9c6-4b99-b8bc-576de8646f73.jpg'
+import fitness from '@/public/assets/image/ee773997-b6d3-4860-b734-3de8e299ac69.jpg'
+import music from '@/public/assets/image/15f8e6c2-f4ee-468f-beb8-5f82817b6598.jpg'
+import bookworm from '@/public/assets/image/1b6d7a8f-e9d1-4188-a9e7-b1b28eaf8fbf.jpg'
+import fashionista from '@/public/assets/image/4be28fba-4961-4994-845b-feabcdb2800b.jpg'
+import pets from '@/public/assets/image/b39c1ca8-de44-496e-8d4f-887006cefdd5.jpg'
+import art from '@/public/assets/image/a0d42d0e-5444-4164-b3d0-6ea28e4d3a39.jpg'
+import throwback from '@/public/assets/image/16359f96-f0fe-4bdf-9ec6-e63a596e83fa.jpg'
+import artistthumbnail from '@/public/assets/image/artistthumbnail.jpg'
+import foodthumbnail from '@/public/assets/image/foodthumbnail.jpg'
 
 const posts = [
     {
@@ -255,7 +255,7 @@ const posts = [
         "username": "foodie",
         "caption": "Lezzetli bir yemek tarifi! 🍲 #cooking",
         "image_url": foodthumbnail,
-        "video_url": 'https://player.vimeo.com/video/902145852?badge=0?autopause=0?player_id=0?app_id=58479',
+        "video_url": 'assets/video/food.mp4',
         "category": "food",
         "likes": 250,
         "saveBook": true,
@@ -280,7 +280,7 @@ const posts = [
         "username": "artenthusiast",
         "caption": "Ressamın çalışma süreci! 🎨 #art",
         "image_url": artistthumbnail,
-        "video_url": "https://player.vimeo.com/video/902145607?h=0bd52ddc92",
+        "video_url": 'assets/video/artist.mp4',
         "category": "art",
         "likes": 300,
         "isLiked": false,
