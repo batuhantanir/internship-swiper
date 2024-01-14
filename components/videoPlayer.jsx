@@ -84,7 +84,7 @@ const VideoPlayer = ({ url, index, handleLiked }) => {
 
     useEffect(() => {
         const video = videoRef.current;
-        setDuration(video.duration);
+        setDuration(video ? video.duration : 0);
     }, []);
 
     return (
@@ -119,9 +119,9 @@ const VideoPlayer = ({ url, index, handleLiked }) => {
             )}
             {url && (
                 <div className="absolute bottom-5 right-2 flex items-center space-x-2 drop-shadow-sm">
-                    <span className="text-white text-sm drop-shadow-sm">{formatTime(currentTime)}</span>
+                    <span className="text-white text-sm drop-shadow-sm">{currentTime != NaN && formatTime(currentTime)}</span>
                     <span className="text-white text-sm drop-shadow-sm">/</span>
-                    <span className="text-white text-sm drop-shadow-sm">{formatTime(duration)}</span>
+                    <span className="text-white text-sm drop-shadow-sm">{duration != NaN && formatTime(duration)}</span>
                     <div
                         className=" flex flex-col items-center"
                         onMouseEnter={() => handleVolumeControlsHover(true)}
