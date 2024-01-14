@@ -8,6 +8,7 @@ import { AiFillHeart } from "react-icons/ai";
 import { MdOutlineVideoLibrary } from "react-icons/md";
 import { FaPlus, FaCheck } from "react-icons/fa6";
 import CommentForm from "@/components/commentForm";
+import VideoPlayer from "@/components/videoPlayer";
 
 export default function Home() {
   const [openPageId, setOpenpageId] = useState();
@@ -23,13 +24,6 @@ export default function Home() {
 
   const handleClick = (index) => {
     setOpenpageId(index);
-  }
-
-  const handlePlayAndStop = (index) => {
-    const videos = document.querySelectorAll(".video")
-    videos.forEach(video =>
-      video.id == `video-${index}` &&
-        video.paused ? video.play() : video.pause())
   }
 
   const handleClose = () => {
@@ -272,14 +266,11 @@ export default function Home() {
                       }
                     </button>
                   </div>
-                  <div className={`post relative row-start-1 row-span-12 lg:rounded-lg `} id={index} >
+                  <div className={`post flex items-center relative row-start-1 row-span-12 lg:rounded-lg `} id={index} >
                     {
                       post.video_url
                         ?
-                        <video className="video w-full h-full" id={`video-${index}`} loop>
-                          <source src={post.video_url} type="video/mp4" />
-                          Your browser does not support the video tag.
-                        </video>
+                        <VideoPlayer url={post.video_url} index={index} handleLiked={handleLiked}/>
                         :
                         <img
                           src={post.image_url.src}
@@ -289,8 +280,6 @@ export default function Home() {
                           draggable={false}
                         />
                     }
-                    <div className="absolute top-1/2 left-1/2 w-full h-full transform -translate-x-1/2 -translate-y-1/2" onClick={() => handlePlayAndStop(index)} onDoubleClick={() => handleLiked(index)}></div>
-
                     <AiFillHeart
                       className={`
                       ${liked == index ? 'scale-[10]' : 'scale-0'}

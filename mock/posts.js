@@ -300,6 +300,31 @@ const posts = [
             }
         ],
         "timestamp": "2024-01-21T16:45:00"
+    },{
+        "id": 13,
+        "username": "artenthusiast",
+        "caption": "Ressamın çalışma süreci! 🎨 #art",
+        "image_url": artistthumbnail,
+        "video_url": 'https://www.youtube.com/watch?v=Mdc2ygbW9vs',
+        "category": "art",
+        "likes": 300,
+        "isLiked": false,
+        "saveBook": true,
+        "comments": [
+            {
+                "id": 1201,
+                "username": "artcritic",
+                "comment": "Bu sanat eseri beni etkiledi!",
+                "timestamp": "2024-01-21T17:00:00"
+            },
+            {
+                "id": 1202,
+                "username": "creativemind",
+                "comment": "Ressamın yeteneği olağanüstü!",
+                "timestamp": "2024-01-21T17:15:00"
+            }
+        ],
+        "timestamp": "2024-01-21T16:45:00"
     }
 ]
 
