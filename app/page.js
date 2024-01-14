@@ -244,8 +244,8 @@ export default function Home() {
           <CarouselContent className={`${openCommentPage != undefined && 'blur-[2px] lg:blur-0'}  w-full max-w-[500px] sm:w-[550px] max-h-[95vh] md:max-h-[750px] lg:h-full lg:max-w-full lg:w-full  mt-0 md:-mt-1`} >
             {mainPosts.map((post, index) => (
               <CarouselItem key={index} className={` pt-1 basis-1 relative h-full `}>
-                <div className={`lg:grid grid-cols-2 grid-rows-6   bg-bgColor rounded-lg h-fit  `}>
-                  <div className="flex col-start-2 col-span-1 lg:border-b   justify-between row-span-1 items-center md:items-center p-2 px-4 xl:px-5">
+                <div className={`lg:grid grid-cols-2 grid-rows-4   bg-bgColor rounded-lg h-fit  `}>
+                  <div className="flex col-start-2 col-span-2 lg:border-b   justify-between row-span-1 items-center md:items-center p-2 px-4 xl:px-5">
                     <div className="flex items-center gap-3 text-white py-1">
                       <img
                         src={usersData.find((user) => user.username == post.username)?.profile_picture.src}
@@ -294,7 +294,7 @@ export default function Home() {
                        opacity-80
                        `} />
                   </div>
-                  <div className="hidden lg:flex flex-col row-span-6 row-start-2 px-4 xl:px-5 py-4 border-b    col-start-2 col-span-1">
+                  <div className="hidden lg:flex flex-col row-span-8 row-start-2 px-4 xl:px-5 py-4 border-b    col-start-2 col-span-1">
                     <div className="">
                       <div className={`h-fit`} id={post.comments[0]?.id} >
                         <span className="mr-2 text-white">{post.username}</span>
@@ -329,7 +329,7 @@ export default function Home() {
                       }
                     </div>
                   </div>
-                  <div className="flex flex-col gap-3 text-white  row-span-1 py-2 col-start-2 col-span-1 ">
+                  <div className="flex flex-col gap-3 text-white  row-span-2 py-2 col-start-2 col-span-1 ">
                     <div className="flex justify-between xl:text-xl 2xl:text-2xl px-2 ">
                       <div className="flex gap-3 ">
                         <button className="cursor-pointer active:scale-90 transition-all duration-150" onClick={() => handleLiked(index)}>
