@@ -11,6 +11,7 @@ const VideoPlayer = ({ url, index, handleLiked }) => {
     const progressRef = useRef(null);
     const volumeRef = useRef(null);
     const volumeControlsRef = useRef(null);
+    const [firstClick, setFirstClick] = useState(false);
     const [lastClickTime, setLastClickTime] = useState(0);
     const [showVolumeControls, setShowVolumeControls] = useState(false);
     const THRESHOLD = 300; // milisaniye
@@ -27,8 +28,6 @@ const VideoPlayer = ({ url, index, handleLiked }) => {
 
         if (timeDiff < THRESHOLD) {
             handleLiked(index);
-        } else {
-            handlePlayPause();
         }
         setLastClickTime(currentTime);
     };
@@ -89,7 +88,7 @@ const VideoPlayer = ({ url, index, handleLiked }) => {
     }, []);
 
     return (
-        <div className="relative rounded-lg overflow-hidden shadow-lg" onClick={handleDoubleClick}>
+        <div className="relative rounded-lg overflow-hidden shadow-lg" onClick={() => { handleDoubleClick(); }}>
             <video
                 className="w-full h-full cursor-pointer"
                 id={`video-${index}`}
