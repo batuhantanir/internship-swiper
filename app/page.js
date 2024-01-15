@@ -227,21 +227,21 @@ export default function Home() {
         </div>
       </div>
       {/* horizontal carousel */}
-      <div className={`w-full h-screen absolute top-0 left-0 bg-white/60 backdrop-blur-sm flex justify-center items-center ${openPageId != null ? "block" : "hidden"}`}>
+      <div className={`w-full h-screen absolute  top-0 left-0 bg-white/60 backdrop-blur-sm flex justify-center items-end md:items-center ${openPageId != null ? "block" : "hidden"}`}>
         <Carousel
           id="openCarousel"
           opts={{
-            align: 'start',
+            align: 'center',
             startIndex: openPageId,
             slidesToScroll: 1,
             dragFree: true,
           }}
           orientation="vertical"
-          className="w-full max-w-fit lg:max-w-[80%] relative lg:rounded-lg"
+          className="w-full max-w-fit lg:h-[70vh] lg:max-w-[70%] relative lg:rounded-lg"
           onScroll
           ref={openCarouselRef}
         >
-          <CarouselContent className={`${openCommentPage != undefined && 'blur-[2px] lg:blur-0'}  w-full max-w-[500px] sm:w-[550px] max-h-[95vh] md:max-h-[750px] lg:h-full lg:max-w-full lg:w-full  mt-0 md:-mt-1`} >
+          <CarouselContent className={`${openCommentPage != undefined && 'blur-[2px] lg:blur-0'}  w-full max-w-[500px] sm:w-[550px] max-h-[95vh] md:max-h-[85vh] lg:max-h-[70vh]  lg:h- lg:max-w-full lg:w-full  mt-0 md:-mt-1`} >
             {mainPosts.map((post, index) => (
               <CarouselItem key={index} className={` pt-1 basis-1 relative h-full `}>
                 <div className={`lg:grid grid-cols-2 grid-rows-4   bg-bgColor rounded-lg h-fit  `}>
@@ -401,8 +401,8 @@ export default function Home() {
             onClick={handleClose}>
             X
           </button>
-          <CarouselPrevious className="hidden md:flex xl:scale-125 2xl:scale-150" />
-          <CarouselNext className="hidden md:flex xl:scale-125 2xl:scale-150" />
+          <CarouselPrevious className="hidden md:flex xl:scale-125 2xl:scale-[1.4]" />
+          <CarouselNext className="hidden md:flex xl:scale-125 2xl:scale-[1.4]" />
           <div className={`${openCommentPage != undefined ? "flex lg:hidden  " : "hidden"} flex-col absolute justify-center  items-center  w-full h-screen text-white top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2`}>
             <div ref={commentRef} className="relative bg-black w-10/12 rounded-md">
               <div className="flex justify-between p-3 border-b border-input items-center">
