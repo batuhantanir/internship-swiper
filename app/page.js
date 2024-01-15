@@ -237,11 +237,11 @@ export default function Home() {
             dragFree: true,
           }}
           orientation="vertical"
-          className="w-full max-w-fit lg:h-[70vh] lg:max-w-[70%] relative lg:rounded-lg"
+          className="w-full max-w-fit lg:h-[85vh] lg:max-w-[70%] relative lg:rounded-lg"
           onScroll
           ref={openCarouselRef}
         >
-          <CarouselContent className={`${openCommentPage != undefined && 'blur-[2px] lg:blur-0'}  w-full max-w-[500px] sm:w-[550px] max-h-[95vh] md:max-h-[85vh] lg:max-h-[70vh]  lg:h- lg:max-w-full lg:w-full  mt-0 md:-mt-1`} >
+          <CarouselContent className={`${openCommentPage != undefined && 'blur-[2px] lg:blur-0'}  w-full max-w-[500px] h-full sm:w-[550px] max-h-[95vh] md:max-h-[85vh]  lg:max-w-full lg:w-full  mt-0 md:-mt-1`} >
             {mainPosts.map((post, index) => (
               <CarouselItem key={index} className={` pt-1 basis-1 relative h-full `}>
                 <div className={`lg:grid grid-cols-2 grid-rows-4   bg-bgColor rounded-lg h-fit  `}>
