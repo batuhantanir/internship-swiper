@@ -241,9 +241,9 @@ export default function Home() {
           onScroll
           ref={openCarouselRef}
         >
-          <CarouselContent className={`${openCommentPage != undefined && 'blur-[2px] lg:blur-0'}  w-full max-w-[500px] h-full sm:w-[550px] max-h-[95vh] md:max-h-[85vh]  lg:max-w-full lg:w-full  mt-0 md:-mt-1`} >
+          <CarouselContent className={`${openCommentPage != undefined && 'blur-[2px] lg:blur-0'}   w-full max-w-[500px] h-full sm:w-[550px] max-h-[95vh] md:max-h-[85vh]  lg:max-w-full lg:w-full  mt-0 md:-mt-1`} >
             {mainPosts.map((post, index) => (
-              <CarouselItem key={index} className={` pt-1 basis-1 relative h-full `}>
+              <CarouselItem key={index} className={` pt-1 basis-1 relative h-full lg:my-2`}>
                 <div className={`lg:grid grid-cols-2 grid-rows-4   bg-bgColor rounded-lg h-fit  `}>
                   <div className="flex col-start-2 col-span-2 lg:border-b   justify-between row-span-1 items-center md:items-center p-2 px-4 xl:px-5">
                     <div className="flex items-center gap-3 text-white py-1">
