@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { FaPlay, FaPause, FaRedo, FaVolumeUp } from 'react-icons/fa';
 
-const VideoPlayer = ({ url, index, handleLiked, type }) => {
+const VideoPlayer = ({ url, index, handleLiked }) => {
     const [playing, setPlaying] = useState(false);
     const [currentTime, setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0);
@@ -82,6 +82,32 @@ const VideoPlayer = ({ url, index, handleLiked, type }) => {
         setDuration(video.duration ? video.duration : 0);
     }, []);
 
+    // loading lazy video
+    useEffect(() => {
+        const options = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.5, // Eğer %50 veya daha fazlası görünüyorsa callback'i tetikle
+        };
+
+        const observer = new IntersectionObserver(([entry]) => {
+            if (entry.isIntersecting) {
+                videoRef.current.src = url;
+                observer.unobserve(videoRef.current);
+            }
+        }, options);
+
+        if (videoRef.current) {
+            observer.observe(videoRef.current);
+        }
+
+        return () => {
+            if (videoRef.current) {
+                observer.unobserve(videoRef.current);
+            }
+        };
+    }, [url]);
+
     return (
         <div className="relative rounded-lg object-cover w-full h-full overflow-hidden shadow-lg " onClick={handleDoubleClick}>
             <video
@@ -91,7 +117,7 @@ const VideoPlayer = ({ url, index, handleLiked, type }) => {
                 onEnded={() => setPlaying(false)}
                 onTimeUpdate={handleTimeUpdate}
                 onClick={handlePlayPause}
-            > <source src={url} type="video/webm" />
+            > <source src="" type="video/webm" />
                 Your browser does not support the video tag.
             </video>
             {currentTime !== duration && (

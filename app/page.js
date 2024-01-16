@@ -9,7 +9,7 @@ import { MdOutlineVideoLibrary } from "react-icons/md";
 import CommentForm from "@/components/commentForm";
 import Image from "next/image";
 import CarouselCardHeader from "@/components/carouselCardHeader";
-import LazyMedia from "@/components/LazyMedia";
+import VideoPlayer from "@/components/videoPlayer";
 
 export default function Home() {
   const [openPageId, setOpenpageId] = useState(undefined);
@@ -243,7 +243,25 @@ export default function Home() {
                     <CarouselCardHeader post={post} usersData={usersData} setUsersData={setUsersData} />
                   </div>
                   <div className={`post flex items-center relative row-start-1 row-span-12 lg:rounded-lg `} id={index} >
-                    <LazyMedia src={post.video_url ? post.video_url : post.image_url} type={post.video_url ? "video" : "image"} index={index} handleLiked={handleLiked} alt={"video/image"} />
+                    {post.video_url ? (
+                      <VideoPlayer
+                        url={post.video_url}
+                        index={index}
+                        handleLiked={handleLiked}
+                        loading="lazy"
+                      />
+                    ) : (
+                      <Image
+                        src={post.image_url}
+                        className="w-full h-full cursor-pointer lg:rounded-md"
+                        alt="Picture of the author"
+                        width={1000}
+                        height={1000}
+                        id={index}
+                        draggable={false}
+                        onDoubleClick={() => handleLiked(index)}
+                      />
+                    )}
                     <AiFillHeart
                       className={`
                       ${liked == index ? 'scale-[10]' : 'scale-0'}
