@@ -153,7 +153,7 @@ const posts = [
     {
         "id": 7,
         "username": "fashionista",
-        "caption": "Moda her zaman bir tutkudur! 👗 #fashion",
+        "caption": "Moda her zaman baksjfksajfğpf askpğksafkpfas pkfsaasf asfasfkaskfüpğaslğüflasğül fğüaslğüflasğüflü ğaslfğü alsğfülasğüfla sfasşflms aflkasfkir tutkudur! 👗 #fashion",
         "category": "fashion",
         "image_url": fashionista,
         "saveBook": false,
@@ -171,7 +171,112 @@ const posts = [
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            }
+            },{
+                "id": 702,
+                "username": "trendsetter",
+                "comment": "Moda dünyasında yeni trendler neler?",
+                "timestamp": "2024-01-16T19:00:00"
+            },{
+                "id": 702,
+                "username": "trendsetter",
+                "comment": "Moda dünyasında yeni trendler neler?",
+                "timestamp": "2024-01-16T19:00:00"
+            },{
+                "id": 702,
+                "username": "trendsetter",
+                "comment": "Moda dünyasında yeni trendler neler?",
+                "timestamp": "2024-01-16T19:00:00"
+            },{
+                "id": 702,
+                "username": "trendsetter",
+                "comment": "Moda dünyasında yeni trendler neler?",
+                "timestamp": "2024-01-16T19:00:00"
+            },{
+                "id": 702,
+                "username": "trendsetter",
+                "comment": "Moda dünyasında yeni trendler neler?",
+                "timestamp": "2024-01-16T19:00:00"
+            },{
+                "id": 702,
+                "username": "trendsetter",
+                "comment": "Moda dünyasında yeni trendler neler?",
+                "timestamp": "2024-01-16T19:00:00"
+            },{
+                "id": 702,
+                "username": "trendsetter",
+                "comment": "Moda dünyasında yeni trendler neler?",
+                "timestamp": "2024-01-16T19:00:00"
+            },{
+                "id": 702,
+                "username": "trendsetter",
+                "comment": "Moda dünyasında yeni trendler neler?",
+                "timestamp": "2024-01-16T19:00:00"
+            },{
+                "id": 702,
+                "username": "trendsetter",
+                "comment": "Moda dünyasında yeni trendler neler?",
+                "timestamp": "2024-01-16T19:00:00"
+            },{
+                "id": 702,
+                "username": "trendsetter",
+                "comment": "Moda dünyasında yeni trendler neler?",
+                "timestamp": "2024-01-16T19:00:00"
+            },{
+                "id": 702,
+                "username": "trendsetter",
+                "comment": "Moda dünyasında yeni trendler neler?",
+                "timestamp": "2024-01-16T19:00:00"
+            },{
+                "id": 702,
+                "username": "trendsetter",
+                "comment": "Moda dünyasında yeni trendler neler?",
+                "timestamp": "2024-01-16T19:00:00"
+            },{
+                "id": 702,
+                "username": "trendsetter",
+                "comment": "Moda dünyasında yeni trendler neler?",
+                "timestamp": "2024-01-16T19:00:00"
+            },{
+                "id": 702,
+                "username": "trendsetter",
+                "comment": "Moda dünyasında yeni trendler neler?",
+                "timestamp": "2024-01-16T19:00:00"
+            },{
+                "id": 702,
+                "username": "trendsetter",
+                "comment": "Moda dünyasında yeni trendler neler?",
+                "timestamp": "2024-01-16T19:00:00"
+            },{
+                "id": 702,
+                "username": "trendsetter",
+                "comment": "Moda dünyasında yeni trendler neler?",
+                "timestamp": "2024-01-16T19:00:00"
+            },{
+                "id": 702,
+                "username": "trendsetter",
+                "comment": "Moda dünyasında yeni trendler neler?",
+                "timestamp": "2024-01-16T19:00:00"
+            },{
+                "id": 702,
+                "username": "trendsetter",
+                "comment": "Moda dünyasında yeni trendler neler?",
+                "timestamp": "2024-01-16T19:00:00"
+            },{
+                "id": 702,
+                "username": "trendsetter",
+                "comment": "Moda dünyasında yeni trendler neler?",
+                "timestamp": "2024-01-16T19:00:00"
+            },{
+                "id": 702,
+                "username": "trendsetter",
+                "comment": "Moda dünyasında yeni trendler neler?",
+                "timestamp": "2024-01-16T19:00:00"
+            },{
+                "id": 702,
+                "username": "trendsetter",
+                "comment": "Moda dünyasında yeni trendler neler?",
+                "timestamp": "2024-01-16T19:00:00"
+            },
         ],
         "timestamp": "2024-01-16T18:30:00"
     },
@@ -249,14 +354,14 @@ const posts = [
             }
         ],
         "timestamp": "2024-01-19T20:45:00"
-    }, 
+    },
     {
         "id": 11,
         "username": "foodie",
         "caption": "Lezzetli bir yemek tarifi! 🍲 #cooking",
         "image_url": foodthumbnail,
         "video_url": 'assets/video/food.mp4',
-        "type":"video",
+        "type": "video",
         "category": "food",
         "likes": 250,
         "saveBook": true,
@@ -282,33 +387,7 @@ const posts = [
         "caption": "Ressamın çalışma süreci! 🎨 #art",
         "image_url": artistthumbnail,
         "video_url": 'assets/video/artist.mp4',
-        "type":"video",
-        "category": "art",
-        "likes": 300,
-        "isLiked": false,
-        "saveBook": true,
-        "comments": [
-            {
-                "id": 1201,
-                "username": "artcritic",
-                "comment": "Bu sanat eseri beni etkiledi!",
-                "timestamp": "2024-01-21T17:00:00"
-            },
-            {
-                "id": 1202,
-                "username": "creativemind",
-                "comment": "Ressamın yeteneği olağanüstü!",
-                "timestamp": "2024-01-21T17:15:00"
-            }
-        ],
-        "timestamp": "2024-01-21T16:45:00"
-    },{
-        "id": 13,
-        "username": "artenthusiast",
-        "caption": "Ressamın çalışma süreci! 🎨 #art",
-        "image_url": artistthumbnail,
-        "video_url": "https://www.youtube.com/embed/Fp010MZ4wgc?si=U2RCrIT6TeYrz11y",
-        "type":"youtube",
+        "type": "video",
         "category": "art",
         "likes": 300,
         "isLiked": false,

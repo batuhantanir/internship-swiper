@@ -7,13 +7,12 @@ const VideoPlayer = ({ url, index, handleLiked, type }) => {
     const [duration, setDuration] = useState(0);
     const [volume, setVolume] = useState(1);
     const [isVolumeHovered, setIsVolumeHovered] = useState(false);
+    const [lastClickTime, setLastClickTime] = useState(0);
+    const [showVolumeControls, setShowVolumeControls] = useState(false);
     const videoRef = useRef(null);
     const progressRef = useRef(null);
     const volumeRef = useRef(null);
     const volumeControlsRef = useRef(null);
-    const [firstClick, setFirstClick] = useState(false);
-    const [lastClickTime, setLastClickTime] = useState(0);
-    const [showVolumeControls, setShowVolumeControls] = useState(false);
     const THRESHOLD = 300; // milisaniye
 
     const formatTime = (time) => {
@@ -69,10 +68,6 @@ const VideoPlayer = ({ url, index, handleLiked, type }) => {
         video.volume = volumeRef.current.value;
     };
 
-    const handleVolumeHover = (hovered) => {
-        setIsVolumeHovered(hovered);
-    };
-
     const handleVolumeControlsHover = (hovered) => {
         if (hovered) {
             setShowVolumeControls(true);
@@ -84,37 +79,22 @@ const VideoPlayer = ({ url, index, handleLiked, type }) => {
 
     useEffect(() => {
         const video = videoRef?.current;
-        console.log(video);
         setDuration(video.duration ? video.duration : 0);
     }, []);
 
     return (
-        <div className="relative rounded-lg w-full h-full overflow-hidden shadow-lg" onClick={type == 'video' && handleDoubleClick}>
-            {
-                type != 'video'
-                    ?
-                    <div className='w-full h-full'>
-                        <iframe
-                            ref={videoRef}
-                            src={url}
-                            className='w-full h-full min-h-[400px]'
-                            frameborder="0"></iframe>
-                    </div>
-                    :
-                    <video
-                        className="w-full h-full cursor-pointer"
-                        id={`video-${index}`}
-                        ref={videoRef}
-                        onEnded={() => setPlaying(false)}
-                        onTimeUpdate={handleTimeUpdate}
-                        onClick={handlePlayPause}
-                    > <source src={url} type="video/webm" />
-                        Your browser does not support the video tag.
-
-                    </video>
-
-            }
-            {currentTime !== duration && type == 'video' && (
+        <div className="relative rounded-lg object-cover w-full h-full overflow-hidden shadow-lg " onClick={handleDoubleClick}>
+            <video
+                className="w-full h-full object-cover cursor-pointer"
+                id={`video-${index}`}
+                ref={videoRef}
+                onEnded={() => setPlaying(false)}
+                onTimeUpdate={handleTimeUpdate}
+                onClick={handlePlayPause}
+            > <source src={url} type="video/webm" />
+                Your browser does not support the video tag.
+            </video>
+            {currentTime !== duration && (
                 <div className="absolute bottom-5 left-2 right-0 " onClick={handlePlayPause}>
                     {playing ? (
                         <FaPause className="text-white text-4xl cursor-pointer drop-shadow-sm" />
@@ -123,7 +103,7 @@ const VideoPlayer = ({ url, index, handleLiked, type }) => {
                     )}
                 </div>
             )}
-            {url && type == 'video' && (
+            {url && (
                 <div className="absolute bottom-0 left-0 right-0 h-3 bg-gray-300" onClick={handleSeek} ref={progressRef}>
                     <div
                         className="h-full bg-gray-500"
@@ -131,7 +111,7 @@ const VideoPlayer = ({ url, index, handleLiked, type }) => {
                     />
                 </div>
             )}
-            {url && type == 'video' && (
+            {url && (
                 <div className="absolute bottom-5 right-2 flex items-center space-x-2 drop-shadow-sm">
                     <span className="text-white text-sm drop-shadow-sm">{currentTime != NaN && formatTime(currentTime)}</span>
                     <span className="text-white text-sm drop-shadow-sm">/</span>
@@ -160,7 +140,7 @@ const VideoPlayer = ({ url, index, handleLiked, type }) => {
                     </div>
                 </div>
             )}
-            {currentTime === duration && type == 'video' && (
+            {currentTime === duration && (
                 <div className="absolute bottom-5 left-2 drop-shadow-sm">
                     <div
                         className="cursor-pointer drop-shadow-2xl"
