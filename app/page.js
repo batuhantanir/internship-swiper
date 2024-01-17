@@ -238,11 +238,11 @@ export default function Home() {
           <div className={`${openCommentPage != undefined && 'blur-[2px] lg:blur-0'} flex flex-col overflow-y-auto lg:gap-6 w-full max-w-[500px] h-full sm:w-[550px] max-h-[95vh] md:max-h-[85vh]  lg:max-w-full lg:w-full  mt-0 md:-mt-1`} >
             {mainPosts.map((post, index) => (
               <div key={index} className={` pt-1 basis-1 relative h-full lg:`}>
-                <div className={`lg:grid grid-cols-2 grid-rows-4   bg-bgColor rounded-lg h-fit  `}>
-                  <div className="flex col-start-2 col-span-2 lg:border-b   justify-between row-span-1 items-center md:items-center p-2 px-4 xl:px-5">
+                <div className={`lg:grid grid-cols-2   bg-bgColor rounded-lg h-fit  `}>
+                  <div className="flex col-start-2 lg:border-b h-fit     justify-between items-center md:items-center p-2 px-4 xl:px-5">
                     <CarouselCardHeader post={post} usersData={usersData} setUsersData={setUsersData} />
                   </div>
-                  <div className={`post flex items-center relative row-start-1 row-span-12 lg:rounded-lg `} id={index} >
+                  <div className={`post flex items-center relative row-span-3 row-start-1  lg:rounded-lg `} id={index} >
                     {post.video_url ? (
                       <VideoPlayer
                         url={post.video_url}
@@ -276,7 +276,7 @@ export default function Home() {
                        opacity-80
                        `} />
                   </div>
-                  <div className="hidden lg:flex flex-col row-span-8 row-start-2 px-4 xl:px-5 py-4 border-b h-full max-h-[30vh] overflow-y-scroll col-start-2 col-span-1">
+                  <div className="hidden lg:flex flex-col px-4 xl:px-5 py-4 border-b min-h-[30vh] h-full max-h-[35vh] overflow-y-scroll col-start-2 ">
                     <div className="">
                       <div className={`h-fit`} id={post.comments[0]?.id} >
                         <span className="mr-2 text-white">{post.username}</span>
@@ -311,7 +311,7 @@ export default function Home() {
                       }
                     </div>
                   </div>
-                  <div className="flex flex-col gap-3 text-white  row-span-2 py-2 col-start-2 col-span-1 ">
+                  <div className="flex flex-col gap-3 text-white h-fit py-2 col-start-2 col-span-1 ">
                     <div className="flex justify-between xl:text-xl 2xl:text-2xl px-2 ">
                       <div className="flex gap-3 ">
                         <button className="cursor-pointer active:scale-90 transition-all duration-150" onClick={() => handleLiked(index)}>

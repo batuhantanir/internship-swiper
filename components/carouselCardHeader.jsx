@@ -24,6 +24,7 @@ function CarouselCardHeader({ post, usersData, setUsersData }) {
                     alt="Profile of the author"
                 />
                 <div className="flex flex-col">
+                    {/* signup tarafında belirli bir uzunluktan sonra kabul etmemesi gerekir */}
                     <span className="text-sm sm:text-base xl:text-xl">{post.username}</span>
                     <span className="text-white/70 text-xs sm:text-sm font-light xl:text-lg">Lorem ipsum.</span>
                 </div>

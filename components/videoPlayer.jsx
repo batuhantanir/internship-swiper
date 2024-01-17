@@ -6,7 +6,7 @@ const VideoPlayer = ({ url, index, handleLiked }) => {
     const [currentTime, setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0);
     const [volume, setVolume] = useState(1);
-    const [isVolumeHovered, setIsVolumeHovered] = useState(false);
+    const [isVisible, setIsVisible] = useState(false);
     const [lastClickTime, setLastClickTime] = useState(0);
     const [showVolumeControls, setShowVolumeControls] = useState(false);
     const videoRef = useRef(null);
@@ -79,21 +79,25 @@ const VideoPlayer = ({ url, index, handleLiked }) => {
 
     useEffect(() => {
         const video = videoRef?.current;
+        console.log(video?.duration);
         setDuration(video.duration ? video.duration : 0);
-    }, []);
+    }, [videoRef?.current?.duration]);
 
     // loading lazy video
     useEffect(() => {
         const options = {
             root: null,
             rootMargin: '0px',
-            threshold: 0.5, // Eğer %50 veya daha fazlası görünüyorsa callback'i tetikle
+            threshold: 0.5,
         };
 
         const observer = new IntersectionObserver(([entry]) => {
             if (entry.isIntersecting) {
                 videoRef.current.src = url;
                 observer.unobserve(videoRef.current);
+                setIsVisible(true);
+            } else {
+                setIsVisible(false);
             }
         }, options);
 
@@ -106,7 +110,13 @@ const VideoPlayer = ({ url, index, handleLiked }) => {
                 observer.unobserve(videoRef.current);
             }
         };
-    }, [url]);
+    }, [url, videoRef]);
+
+    useEffect(() => {
+        if (!isVisible) {
+            videoRef.current.pause();
+        }
+    }, [isVisible]);
 
     return (
         <div className="relative rounded-lg object-cover w-full h-full overflow-hidden shadow-lg " onClick={handleDoubleClick}>
@@ -120,7 +130,7 @@ const VideoPlayer = ({ url, index, handleLiked }) => {
             > <source src="" type="video/webm" />
                 Your browser does not support the video tag.
             </video>
-            {currentTime !== duration && (
+            {(currentTime == 0 || currentTime !== duration) && (
                 <div className="absolute bottom-5 left-2 right-0 " onClick={handlePlayPause}>
                     {playing ? (
                         <FaPause className="text-white text-4xl cursor-pointer drop-shadow-sm" />
@@ -166,7 +176,7 @@ const VideoPlayer = ({ url, index, handleLiked }) => {
                     </div>
                 </div>
             )}
-            {currentTime === duration && (
+            {(currentTime === duration && currentTime != 0) && (
                 <div className="absolute bottom-5 left-2 drop-shadow-sm">
                     <div
                         className="cursor-pointer drop-shadow-2xl"
