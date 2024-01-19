@@ -32,7 +32,20 @@ function CarouselCardHeader({
     const [valueIdInDialog, setValueIdInDialog] = useState(undefined);
     const [radioSelectedValue, setRadioSelectedValue] = useState(null);
     const [reportHeader, setReportHeader] = useState(null)
-
+    const footerData = [
+        {
+            id: 1,
+            name: "Takibi bırak",
+            onclick: (userName) => {
+                setUsersData((prevUsers) =>
+                    prevUsers.map((user) =>
+                        user.username === userName ? { ...user, follow: false } : user
+                    )
+                );
+                console.log(usersData);
+            }
+        },
+    ]
 
     const handleFollow = (userName) => {
         setUsersData((prevUsers) =>
@@ -114,6 +127,15 @@ function CarouselCardHeader({
         }
     }
 
+    const handleClose = () => {
+        setOpen(false)
+        setReportHeader(null)
+        setRadioSelectedValue(null)
+        setTimeout(() => {
+            setValueIdInDialog(undefined)
+        }, 200)
+    }
+
     return (
         <div className={`flex justify-between items-center p-2 ${className}`}>
             <div className="flex items-center gap-3 text-white py-1 ">
@@ -136,9 +158,9 @@ function CarouselCardHeader({
                 <button onClick={() => handleFollow(post.username)} className="flex flex-nowrap justify-center items-center gap-2 lg:gap-1 xl:gap-2 text-white border text-sm h-fit w-fit p-1 rounded-lg transition-all ease-in-out duration-200 hover:text-black hover:bg-white/80 lg:scale-90 xl:scale-100">
                     {(usersData.find((user) => user.username == post.username)?.follow == true)
                         ?
-                        <><span className="hidden sm:block">Takip et</span> <FaPlus /> </>
-                        :
                         <><span className="hidden sm:block whitespace-nowrap">Takip ediliyor</span> <FaCheck /></>
+                        :
+                        <><span className="hidden sm:block">Takip et</span> <FaPlus /> </>
                     }
                 </button>
                 {type == "horizontalPage" &&
@@ -150,13 +172,7 @@ function CarouselCardHeader({
                                     <RiSpam2Fill />
                                     <span>Şikayet et</span>
                                 </DialogTrigger>
-                                <DialogContent onClick={() => {
-                                    setReportHeader(null)
-                                    setRadioSelectedValue(null)
-                                    setTimeout(() => {
-                                        setValueIdInDialog(undefined)
-                                    }, 200)
-                                }}
+                                <DialogContent onClick={handleClose}
                                     className="bg-bgColor border-none  w-full max-w-screen-[450px]" ref={dialogContentRef}>
                                     <DialogHeader >
                                         {<DialogTitle className={`text-white flex justify-between border-b px-6 py-4`}>
@@ -167,11 +183,7 @@ function CarouselCardHeader({
                                                 </span>
                                             </button>}
                                             <span>Şikayet</span>
-                                            <button className='justify-self-end' onClick={() => {
-                                                setOpen(false)
-                                                setReportHeader(null)
-                                                setRadioSelectedValue(null)
-                                            }}><FaXmark /></button>
+                                            <button className='justify-self-end' onClick={handleClose}><FaXmark /></button>
                                         </DialogTitle>}
                                         <DialogDescription >
                                             <div className="flex flex-col items-start gap-4 mt-2 px-6 py-2 w-full">
@@ -199,11 +211,25 @@ function CarouselCardHeader({
                                                             <div className='font-semibold  '>{valueIdInDialog.name}</div>
                                                             <div className='text-gray-400 '>{valueIdInDialog.description}</div>
                                                             <div className="flex flex-col gap-4 mt-8 w-full items-start">
-                                                                <button className='flex justify-between  w-full' onClick={() => {
-                                                                }}>
-                                                                    <span className="text-red-500">Block s</span> <span className='text-gray-400 '><IoIosArrowForward /></span>
-                                                                </button>
+                                                                {footerData.map((item, index) => (
+                                                                    usersData.find((user) => user.username == post.username)?.follow == true &&
+                                                                    <button
+                                                                        key={index}
+                                                                        onClick={() => {
+                                                                            setOpen(false)
+                                                                            setTimeout(() => {
+                                                                                item.onclick(post.username)
+                                                                            }, 100);
+                                                                        }}
+                                                                        className="mb-2">
+                                                                        {item.name} {post.username}
+                                                                    </button>
+                                                                ))}
                                                             </div>
+                                                            <button
+                                                                onClick={handleClose}
+                                                                className={`disabled:bg-blue-400/80 w-full text-center rounded-lg  bg-blue-600 text-white py-1 mb-2`}
+                                                            > Kapat </button>
                                                         </div>
                                                         :
                                                         <div className='flex flex-col w-full' >
