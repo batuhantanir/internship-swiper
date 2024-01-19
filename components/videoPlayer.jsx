@@ -79,38 +79,31 @@ const VideoPlayer = ({ url, index, handleLiked }) => {
 
     useEffect(() => {
         const video = videoRef?.current;
-        console.log(video?.duration);
         setDuration(video.duration ? video.duration : 0);
     }, [videoRef?.current?.duration]);
 
-    // loading lazy video
+    const handleIntersection = (entries) => {
+        entries.forEach((entry) => {
+            setIsVisible(entry.isIntersecting);
+            entry.isIntersecting && (videoRef.current.src = url);
+            entry.isIntersecting ? (videoRef.current.play()) : (videoRef.current.pause());
+        });
+    };
+    // loading lazy video and play when visible
     useEffect(() => {
         const options = {
             root: null,
             rootMargin: '0px',
-            threshold: 0.5,
+            threshold: 0.5, // Or any other threshold you prefer
         };
 
-        const observer = new IntersectionObserver(([entry]) => {
-            if (entry.isIntersecting) {
-                videoRef.current.src = url;
-                observer.unobserve(videoRef.current);
-                setIsVisible(true);
-            } else {
-                setIsVisible(false);
-            }
-        }, options);
-
-        if (videoRef.current) {
-            observer.observe(videoRef.current);
-        }
+        const observer = new IntersectionObserver(handleIntersection, options);
+        observer.observe(videoRef.current);
 
         return () => {
-            if (videoRef.current) {
-                observer.unobserve(videoRef.current);
-            }
+            observer.disconnect();
         };
-    }, [url, videoRef]);
+    }, [videoRef, url]);
 
     useEffect(() => {
         if (!isVisible) {

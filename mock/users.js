@@ -46,12 +46,12 @@ const users = [
         "follow":false
     },
     {
-        "username": "artistic_soul",
+        "username": "artistic",
         "profile_picture": artistic_soul,
         "follow":false
     },
     {
-        "username": "throwbackmemories",
+        "username": "throwback",
         "profile_picture": artistic_soul,
         "follow":false
     },{

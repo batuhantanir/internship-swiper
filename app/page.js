@@ -21,9 +21,11 @@ export default function Home() {
   const [liked, setLiked] = useState(undefined);
   const openCarouselRef = useRef(null);
   const commentRef = useRef(null);
+  const popoverRef = useRef(null);
+  const dialogContentRef = useRef(null);
   const [categories, setCategories] = useState([
-    "all", "art", "books", "fashion", "food", "health", "life",
-    "style", "memories", "music", "nature", "pets", "travel"
+    "all", "art", "books", "fashion", "food", "health",
+    "memories", "music", "nature", "pets", "travel"
   ]);
 
   const handleClick = (index) => {
@@ -91,19 +93,19 @@ export default function Home() {
       document.querySelector(`#all`)?.classList.add("border-b-2")
       document.querySelector(`#all`)?.classList.add(textShadow)
     } else {
-      document.querySelector(`#${updatePosts[0].category}`)?.classList.add("border-b-2")
-      document.querySelector(`#${updatePosts[0].category}`)?.classList.add(textShadow)
-      document.querySelector(`#${updatePosts[0].category}`)?.classList.add("scale-105")
-
+      document.querySelector(`#${updatePosts[0]?.category}`)?.classList.add("border-b-2")
+      document.querySelector(`#${updatePosts[0]?.category}`)?.classList.add(textShadow)
+      document.querySelector(`#${updatePosts[0]?.category}`)?.classList.add("scale-105")
     }
 
   }, [updatePosts])
 
   useEffect(() => {
     const handleOutsideClick = (e) => {
-      if (openCarouselRef.current && !openCarouselRef.current.contains(e.target)) {
-        // Tıklanan öğe modalRef içinde değilse, yani ref dışında tıklanılmışsa
-        // Pencereyi kapatma işlemi
+      if (!(dialogContentRef.current && dialogContentRef.current.contains(e.target)) &&
+        !(dialogContentRef.current && !dialogContentRef.current.contains(e.target)) &&
+        !(popoverRef.current && popoverRef.current.contains(e.target)) &&
+        (openCarouselRef.current && !openCarouselRef.current.contains(e.target))) {
         if (openCommentPage == undefined && openCommentPage == null) {
           handleClose();
         }
@@ -194,9 +196,7 @@ export default function Home() {
                   updatePost == post && (
                     <CarouselItem key={index} className="basis-3/4 md:basis-1/2 lg:basis-1/3 ">
                       <div className={` bg-bgColor rounded-lg  md:h-full`}>
-                        <div className="flex justify-between items-center p-2 ">
-                          <CarouselCardHeader post={post} usersData={usersData} setUsersData={setUsersData} />
-                        </div>
+                        <CarouselCardHeader post={post} usersData={usersData} setUsersData={setUsersData} />
                         {/* tıklandığında horizontal carousel açılacak */}
                         <button className="relative group w-full" onClick={() => handleClick(index)}>
                           <Image
@@ -239,9 +239,16 @@ export default function Home() {
             {mainPosts.map((post, index) => (
               <div key={index} className={` pt-1 basis-1 relative h-full lg:`}>
                 <div className={`lg:grid grid-cols-2   bg-bgColor rounded-lg h-fit  `}>
-                  <div className="flex col-start-2 lg:border-b h-fit     justify-between items-center md:items-center p-2 px-4 xl:px-5">
-                    <CarouselCardHeader post={post} usersData={usersData} setUsersData={setUsersData} />
-                  </div>
+                  <CarouselCardHeader
+                    post={post}
+                    usersData={usersData}
+                    setUsersData={setUsersData}
+                    openCommentPage={openCommentPage}
+                    openCarouselRef={openCarouselRef}
+                    type={"horizontalPage"}
+                    popoverRef={popoverRef}
+                    dialogContentRef={dialogContentRef}
+                    className={"h-fit flex col-start-2 lg:border-b md:items-center px-4 xl:px-5"} />
                   <div className={`post flex items-center relative row-span-3 row-start-1  lg:rounded-lg `} id={index} >
                     {post.video_url ? (
                       <VideoPlayer
@@ -416,10 +423,11 @@ export default function Home() {
               </div>
             </div>
           </div>
+          <div className={`${openCommentPage != undefined ? "flex lg:hidden  " : "hidden"} flex-col absolute justify-center  items-center  w-full h-screen text-white top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2`}>
+            <div ref={commentRef} className="relative bg-black w-10/12 rounded-md"></div>
+          </div>
         </div>
       </div>
-
-
     </div>
   )
 }
