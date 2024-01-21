@@ -42,7 +42,6 @@ function CarouselCardHeader({
                         user.username === userName ? { ...user, follow: false } : user
                     )
                 );
-                console.log(usersData);
             }
         },
     ]
@@ -166,9 +165,9 @@ function CarouselCardHeader({
                 {type == "horizontalPage" &&
                     <Popover open={open} >
                         <PopoverTrigger onClick={() => setOpen(!open)}><BsThreeDots className="text-white" /></PopoverTrigger>
-                        <PopoverContent ref={popoverRef} className="flex flex-col gap-2 w-fit" >
+                        <PopoverContent ref={popoverRef} className="flex flex-col gap-2 p-0 w-fit hover:bg-gray-100" >
                             <Dialog className="" >
-                                <DialogTrigger className='flex items-center  gap-2'>
+                                <DialogTrigger className='flex items-center  gap-2 p-3 '>
                                     <RiSpam2Fill />
                                     <span>Şikayet et</span>
                                 </DialogTrigger>
@@ -198,7 +197,7 @@ function CarouselCardHeader({
                                                                 setReportHeader(report.name);
                                                                 setValueIdInDialog(reports[report.id]?.child);
                                                             }}
-                                                                className='flex items-center md:gap-4 justify-between w-full text-white'>
+                                                                className='flex items-center md:gap-4 py-1 px-[5px] justify-between w-full text-white text-base '>
                                                                 <span className='text-start  '>{report.name}</span>
                                                                 <span className='text-gray-400'><IoIosArrowForward /></span>
                                                             </button>
@@ -210,22 +209,22 @@ function CarouselCardHeader({
                                                             <div className='text-green-500 mb-4'><FaRegCircleCheck size={30} /></div>
                                                             <div className='font-semibold  '>{valueIdInDialog.name}</div>
                                                             <div className='text-gray-400 '>{valueIdInDialog.description}</div>
-                                                            <div className="flex flex-col gap-4 mt-8 w-full items-start">
-                                                                {footerData.map((item, index) => (
-                                                                    usersData.find((user) => user.username == post.username)?.follow == true &&
-                                                                    <button
-                                                                        key={index}
-                                                                        onClick={() => {
-                                                                            setOpen(false)
-                                                                            setTimeout(() => {
-                                                                                item.onclick(post.username)
-                                                                            }, 100);
-                                                                        }}
-                                                                        className="mb-2">
-                                                                        {item.name} {post.username}
-                                                                    </button>
-                                                                ))}
-                                                            </div>
+                                                            {usersData.find((user) => user.username == post.username)?.follow == true &&
+                                                                <div className="flex flex-col gap-4 mt-8 w-full items-start ">
+                                                                    {footerData.map((item, index) => (
+                                                                        <button
+                                                                            key={index}
+                                                                            onClick={() => {
+                                                                                setOpen(false)
+                                                                                setTimeout(() => {
+                                                                                    item.onclick(post.username)
+                                                                                }, 100);
+                                                                            }}
+                                                                            className="mb-2  w-fit border rounded-lg p-2 border-red-500 text-red-500 hover:bg-red-500 hover:text-white  transition-all duration-200">
+                                                                            {item.name}  {post.username}
+                                                                        </button>
+                                                                    ))}
+                                                                </div>}
                                                             <button
                                                                 onClick={handleClose}
                                                                 className={`disabled:bg-blue-400/80 w-full text-center rounded-lg  bg-blue-600 text-white py-1 mb-2`}
