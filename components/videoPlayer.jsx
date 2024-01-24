@@ -6,6 +6,7 @@ const VideoPlayer = ({ url, index, handleLiked }) => {
     const [currentTime, setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0);
     const [volume, setVolume] = useState(1);
+    const [isVideoMuted, setIsVideoMuted] = useState(true);
     const [isVisible, setIsVisible] = useState(false);
     const [lastClickTime, setLastClickTime] = useState(0);
     const [showVolumeControls, setShowVolumeControls] = useState(false);
@@ -73,9 +74,14 @@ const VideoPlayer = ({ url, index, handleLiked }) => {
             setShowVolumeControls(true);
         } else {
             // Küçük bir gecikme ekleyerek kullanıcının kontrol paneline gitmesine izin veriyoruz
-            setTimeout(() => setShowVolumeControls(false), 1500);
+            setTimeout(() => setShowVolumeControls(false), 2500);
         }
     };
+
+    useEffect(() => {
+        isVideoMuted == true && setIsVideoMuted(false);
+    }, [volume])
+
 
     useEffect(() => {
         const video = videoRef?.current;
@@ -130,7 +136,7 @@ const VideoPlayer = ({ url, index, handleLiked }) => {
                 ref={videoRef}
                 onEnded={() => setPlaying(false)}
                 onTimeUpdate={handleTimeUpdate}
-                muted={true}
+                muted={isVideoMuted}
                 onClick={handlePlayPause}
                 playsInline={true}
             > <source src="" type="video/webm" />
@@ -164,27 +170,28 @@ const VideoPlayer = ({ url, index, handleLiked }) => {
                         onMouseLeave={() => handleVolumeControlsHover(false)}
                         ref={volumeControlsRef}
                     >
-                        {videoRef.current && videoRef.current.muted ? <FaVolumeMute
+                        {isVideoMuted ? <FaVolumeMute
                             className="text-white text-2xl cursor-pointer"
                             onClick={() => {
-                                
-                                videoRef.current && (videoRef.current.muted = false)
+                                setIsVideoMuted(false)
+                                setVolume(1)
                             }} />
                             : <FaVolumeUp onClick={() => {
-                                videoRef.current && (videoRef.current.muted = true)
+                                setIsVideoMuted(true)
+                                setVolume(0)
                             }} className="text-white text-2xl  cursor-pointer hidden md:block" />}
-                        {showVolumeControls && (
-                            <input
-                                className="absolute hidden md:block -top-12 rotate-[270deg] w-20 h-2"
-                                type="range"
-                                min="0"
-                                max="1"
-                                step="0.01"
-                                value={volume}
-                                ref={volumeRef}
-                                onChange={handleVolumeChange}
-                            />
-                        )}
+
+                        <input
+                            className={`hidden ${showVolumeControls ? "md:block" : "hidden"} absolute   -top-12 rotate-[270deg] w-20 h-2`}
+                            type="range"
+                            min="0"
+                            max="1"
+                            step="0.01"
+                            value={volume}
+                            ref={volumeRef}
+                            onChange={handleVolumeChange}
+                        />
+
                     </div>
                 </div>
             )}
