@@ -16,9 +16,12 @@ const VideoPlayer = ({ url, index, handleLiked }) => {
     const THRESHOLD = 300; // milisaniye
 
     const formatTime = (time) => {
-        const minutes = Math.floor(time / 60);
-        const seconds = Math.floor(time % 60);
-        return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+        if (!isNaN(time) && time >= 0) {
+            const minutes = Math.floor(time / 60);
+            const seconds = Math.floor(time % 60);
+            return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+        }
+        return '00:00';
     };
 
     const handleDoubleClick = () => {
@@ -78,25 +81,25 @@ const VideoPlayer = ({ url, index, handleLiked }) => {
     };
 
     useEffect(() => {
-        const video = videoRef?.current;
-        setDuration(video.duration ? video.duration : 0);
-    }, [videoRef?.current?.duration]);
+        const video = videoRef.current;
+        setDuration(!isNaN(video.duration) ? video.duration : 0);
+    }, [videoRef.current?.duration]);
 
     const handleIntersection = (entries) => {
-        console.log("xx")
+        console.log("xx");
         entries.forEach((entry) => {
             setIsVisible(entry.isIntersecting);
-            entry.isIntersecting && (videoRef.current.src = url);
 
             if (entry.isIntersecting) {
-                setPlaying(true)
-                videoRef.current.play()
+                setPlaying(true);
+                videoRef.current && videoRef.current.play();
             } else {
-                setPlaying(false)
-                videoRef.current.pause()
+                setPlaying(false);
+                videoRef.current && videoRef.current.pause();
             }
         });
     };
+
     // loading lazy video and play when visible
     useEffect(() => {
         const options = {
@@ -114,13 +117,13 @@ const VideoPlayer = ({ url, index, handleLiked }) => {
     }, [videoRef, url]);
 
     useEffect(() => {
-        if (!isVisible) {
+        if (!isVisible && videoRef.current) {
             videoRef.current.pause();
         }
     }, [isVisible]);
 
     return (
-        <div className="relative rounded-lg object-cover w-full h-full overflow-hidden shadow-lg " onClick={handleDoubleClick} onTouchStart={handleDoubleClick}>
+        <div className="relative rounded-lg object-cover w-full h-full overflow-hidden shadow-lg " onClick={handleDoubleClick}>
             <video
                 className="w-full h-full object-cover cursor-pointer"
                 id={`video-${index}`}
@@ -128,12 +131,12 @@ const VideoPlayer = ({ url, index, handleLiked }) => {
                 onEnded={() => setPlaying(false)}
                 onTimeUpdate={handleTimeUpdate}
                 onClick={handlePlayPause}
-                onTouchStart={handlePlayPause}
-                playsinline
-            > <source src="" type="video/webm" />
+                playsInline
+            >
+                <source src={url} type="video/webm" />
                 Your browser does not support the video tag.
             </video>
-            {(currentTime == 0 || currentTime !== duration) && (
+            {currentTime === 0 || currentTime !== duration ? (
                 <div className="absolute bottom-5 left-2 right-0 " onClick={handlePlayPause}>
                     {playing ? (
                         <FaPause className="text-white text-4xl cursor-pointer drop-shadow-sm" />
@@ -141,7 +144,7 @@ const VideoPlayer = ({ url, index, handleLiked }) => {
                         <FaPlay className="text-white text-4xl cursor-pointer drop-shadow-sm" />
                     )}
                 </div>
-            )}
+            ) : null}
             {url && (
                 <div className="absolute bottom-0 left-0 right-0 h-3 bg-gray-300" onClick={handleSeek} ref={progressRef}>
                     <div
@@ -152,9 +155,9 @@ const VideoPlayer = ({ url, index, handleLiked }) => {
             )}
             {url && (
                 <div className="absolute bottom-5 right-2 flex items-center space-x-2 drop-shadow-sm">
-                    <span className="text-white text-sm drop-shadow-sm">{currentTime != NaN && formatTime(currentTime)}</span>
+                    <span className="text-white text-sm drop-shadow-sm">{!isNaN(currentTime) && formatTime(currentTime)}</span>
                     <span className="text-white text-sm drop-shadow-sm">/</span>
-                    <span className="text-white text-sm drop-shadow-sm">{duration != NaN && formatTime(duration)}</span>
+                    <span className="text-white text-sm drop-shadow-sm">{!isNaN(duration) && formatTime(duration)}</span>
                     <div
                         className=" flex flex-col items-center"
                         onMouseEnter={() => handleVolumeControlsHover(true)}
@@ -179,7 +182,7 @@ const VideoPlayer = ({ url, index, handleLiked }) => {
                     </div>
                 </div>
             )}
-            {(currentTime === duration && currentTime != 0) && (
+            {currentTime === duration && currentTime !== 0 && (
                 <div className="absolute bottom-5 left-2 drop-shadow-sm">
                     <div
                         className="cursor-pointer drop-shadow-2xl"
@@ -189,7 +192,6 @@ const VideoPlayer = ({ url, index, handleLiked }) => {
                     </div>
                 </div>
             )}
-
         </div>
     );
 };
