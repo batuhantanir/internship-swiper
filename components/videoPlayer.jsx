@@ -129,6 +129,7 @@ const VideoPlayer = ({ url, index, handleLiked }) => {
                 onTimeUpdate={handleTimeUpdate}
                 onClick={handlePlayPause}
                 onTouchStart={handlePlayPause}
+                playsinline
             > <source src="" type="video/webm" />
                 Your browser does not support the video tag.
             </video>
