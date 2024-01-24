@@ -34,15 +34,32 @@ const VideoPlayer = ({ url, index, handleLiked }) => {
         setLastClickTime(currentTime);
     };
 
-    const handlePlayPause = () => {
+    const handlePlayPause = async () => {
         const video = videoRef.current;
 
-        if (video.paused) {
-            video.play();
+        try {
+            // Tarayıcı autoplay için izin veriyorsa doğrudan oynat
+            await video.play();
             setPlaying(true);
-        } else {
-            video.pause();
-            setPlaying(false);
+        } catch (error) {
+            if (error.name === 'NotAllowedError' || error.name === 'AbortError') {
+                // Kullanıcıdan izin iste
+                const userPermission = window.confirm('Bu videoyu otomatik oynatmak ister misiniz?');
+
+                if (userPermission) {
+                    try {
+                        // Kullanıcı izin verdiyse tekrar oynat
+                        await video.play();
+                        setPlaying(true);
+                    } catch (error) {
+                        // Kullanıcı izin vermedi veya başka bir hata oluştu
+                        console.error('Otomatik oynatma izni alınamadı:', error);
+                    }
+                }
+            } else {
+                // Diğer hata durumları
+                console.error('Otomatik oynatma hatası:', error);
+            }
         }
     };
 
@@ -86,11 +103,11 @@ const VideoPlayer = ({ url, index, handleLiked }) => {
     }, [videoRef.current?.duration]);
 
     const handleIntersection = (entries) => {
-        console.log("xx");
         entries.forEach((entry) => {
             setIsVisible(entry.isIntersecting);
 
             if (entry.isIntersecting) {
+                videoRef.current.src = url;
                 setPlaying(true);
                 videoRef.current && videoRef.current.play();
             } else {
@@ -163,7 +180,7 @@ const VideoPlayer = ({ url, index, handleLiked }) => {
                         onMouseEnter={() => handleVolumeControlsHover(true)}
                         onMouseLeave={() => handleVolumeControlsHover(false)}
                         onTouchStart={() => handleVolumeControlsHover(true)}
-                        onTouchEnd={() => handleVolumeControlsHover(true)}
+                        onTouchEnd={() => handleVolumeControlsHover(false)}
                         ref={volumeControlsRef}
                     >
                         <FaVolumeUp className="text-white text-2xl cursor-pointer" />
