@@ -110,19 +110,23 @@ export default function Home() {
           handleClose();
         }
       }
-      if (commentRef.current && !commentRef.current.contains(e.target)) {
-        setOpenCommentPage(undefined)
-      }
     };
+    const closeCommentPage = (e) => {
+      if ((openCommentPage != null || openCommentPage != undefined) &&
+        (commentRef.current && !commentRef.current.contains(e.target))) {
+        setOpenCommentPage(undefined);
+      }
+    }
 
     // Event listener'ı ekleyin
     document.addEventListener('mousedown', handleOutsideClick);
-
+    document?.addEventListener('mousedown', closeCommentPage);
     // Temizlik işlemi
     return () => {
       document.removeEventListener('mousedown', handleOutsideClick);
+      document?.removeEventListener('mousedown', closeCommentPage);
     };
-  }, [handleClose]);
+  }, [handleClose,]);
 
   const handleFocus = (index) => {
     document?.querySelectorAll(".commentInput")[index]?.focus();
@@ -194,14 +198,14 @@ export default function Home() {
                 updatePosts.map((updatePost) =>
                 (
                   updatePost == post && (
-                    <CarouselItem key={index} className="basis-3/4 md:basis-1/2 lg:basis-1/3 ">
-                      <div className={` bg-bgColor rounded-lg  md:h-full`}>
+                    <CarouselItem key={index} className="basis-3/4 sm:basis-2/3 md:basis-1/2 lg:basis-1/3">
+                      <div className={` bg-bgColor rounded-lg  h-fit md:h-full`}>
                         <CarouselCardHeader post={post} usersData={usersData} setUsersData={setUsersData} />
                         {/* tıklandığında horizontal carousel açılacak */}
-                        <button className="relative group w-full" onClick={() => handleClick(index)}>
+                        <button className="relative group w-full h-fit" onClick={() => handleClick(index)}>
                           <Image
                             src={post.image_url.src}
-                            className=" w-full h-[400px] md:h-full xl:h-full cursor-pointer  lg:rounded-md"
+                            className=" w-full h-full md:h-full xl:h-full cursor-pointer  lg:rounded-md"
                             alt="Picture of the author"
                             width={700}
                             height={700}
@@ -232,10 +236,10 @@ export default function Home() {
       <div className={`w-full h-screen absolute  top-0 left-0 bg-white/60 backdrop-blur-sm flex justify-center items-end md:items-center ${openPageId != null ? "block" : "hidden"}`}>
         <div
           id="openCarousel"
-          className="w-full max-w-fit lg:h-[85vh] lg:max-w-[70%] relative lg:rounded-lg"
+          className="w-full max-w-fit lg:h-[85vh] lg:max-w-[70%] relative lg:rounded-lg sm:mt-0"
           ref={openCarouselRef}
         >
-          <div className={`${openCommentPage != undefined && 'blur-[2px] lg:blur-0'} flex flex-col overflow-y-auto lg:gap-6 w-full max-w-[500px] h-full sm:w-[550px] max-h-[95vh] md:max-h-[85vh]  lg:max-w-full lg:w-full  mt-0 md:-mt-1`} >
+          <div className={` flex flex-col overflow-y-auto lg:gap-6 w-full max-w-[500px] h-full sm:w-[550px] max-h-[95vh] md:max-h-[85vh]  lg:max-w-full lg:w-full mt-0 md:-mt-1`} >
             {mainPosts.map((post, index) => (
               <div key={index} className={` pt-1 basis-1 relative h-full lg:`}>
                 <div className={`lg:grid grid-cols-2   bg-bgColor rounded-lg h-fit  `}>
@@ -369,7 +373,7 @@ export default function Home() {
 
           <button className="
             absolute
-            -top-[14px]
+            -top-[32px]
             right-2
             md:top-0
             md:-right-12
@@ -387,14 +391,17 @@ export default function Home() {
             X
           </button>
 
-          <div className={`${openCommentPage != undefined ? "flex lg:hidden  " : "hidden"} flex-col absolute justify-center  items-center  w-full h-screen text-white top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2`}>
-            <div ref={commentRef} className="relative bg-black w-10/12 rounded-md">
-              <div className="flex justify-between p-3 border-b border-input items-center">
-                <span>
-                  {mainPosts[openCommentPage]?.comments.length} yorum
-                </span>
-                <button
-                  className="
+
+        </div>
+      </div>
+      <div className={`${openCommentPage != undefined ? "flex lg:hidden backdrop-blur-[2px]  " : "hidden"} flex-col absolute justify-center  items-center  w-full  h-screen text-white top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2`}>
+        <div ref={commentRef} className="relative bg-black w-10/12 rounded-md max-w-[400px]">
+          <div className="flex justify-between p-3 border-b border-input items-center">
+            <span>
+              {mainPosts[openCommentPage]?.comments.length} yorum
+            </span>
+            <button
+              className="
                       border
                       border-input
                       text-black
@@ -404,27 +411,23 @@ export default function Home() {
                       w-8 h-8
                       rounded-full
                       "
-                  onClick={() => {
-                    setOpenCommentPage(undefined);
-                  }}>X</button></div>
-              <div className={`flex flex-col px-3 overflow-y-auto overflow-x-hidden max-h-[400px]`}>
-                {mainPosts[openCommentPage]?.comments.length != 0 ?
-                  mainPosts[openCommentPage]?.comments.map((comment, index) => (
-                    <div key={index} className="mt-2  ">
-                      <span>{comment.username}</span> <span className="text-white/80 max-w-[300px] h-fit whitespace-wrap">
-                        {comment.comment} </span>
-                    </div>))
-                  :
-                  <span>hiç yorum yok.</span>
-                }
-              </div>
-              <div>
-                <CommentForm posts={posts} index={openCommentPage} setMainPosts={setMainPosts} />
-              </div>
-            </div>
+              onClick={() => {
+                setOpenCommentPage(undefined);
+              }}>X</button>
           </div>
-          <div className={`${openCommentPage != undefined ? "flex lg:hidden  " : "hidden"} flex-col absolute justify-center  items-center  w-full h-screen text-white top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2`}>
-            <div ref={commentRef} className="relative bg-black w-10/12 rounded-md"></div>
+          <div className={`flex flex-col px-3 overflow-y-auto overflow-x-hidden max-h-[400px] `}>
+            {mainPosts[openCommentPage]?.comments.length != 0 ?
+              mainPosts[openCommentPage]?.comments.map((comment, index) => (
+                <div key={index} className="mt-2  ">
+                  <span>{comment.username}</span> <span className="text-white/80 max-w-[300px] h-fit whitespace-wrap">
+                    {comment.comment} </span>
+                </div>))
+              :
+              <span>hiç yorum yok.</span>
+            }
+          </div>
+          <div>
+            <CommentForm posts={posts} index={openCommentPage} setMainPosts={setMainPosts} />
           </div>
         </div>
       </div>

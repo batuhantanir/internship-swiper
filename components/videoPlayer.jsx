@@ -83,10 +83,18 @@ const VideoPlayer = ({ url, index, handleLiked }) => {
     }, [videoRef?.current?.duration]);
 
     const handleIntersection = (entries) => {
+        console.log("xx")
         entries.forEach((entry) => {
             setIsVisible(entry.isIntersecting);
             entry.isIntersecting && (videoRef.current.src = url);
-            entry.isIntersecting ? (videoRef.current.play()) : (videoRef.current.pause());
+
+            if (entry.isIntersecting) {
+                setPlaying(true)
+                videoRef.current.play()
+            } else {
+                setPlaying(false)
+                videoRef.current.pause()
+            }
         });
     };
     // loading lazy video and play when visible
@@ -112,7 +120,7 @@ const VideoPlayer = ({ url, index, handleLiked }) => {
     }, [isVisible]);
 
     return (
-        <div className="relative rounded-lg object-cover w-full h-full overflow-hidden shadow-lg " onClick={handleDoubleClick}>
+        <div className="relative rounded-lg object-cover w-full h-full overflow-hidden shadow-lg " onClick={handleDoubleClick} onTouchStart={handleDoubleClick}>
             <video
                 className="w-full h-full object-cover cursor-pointer"
                 id={`video-${index}`}
@@ -120,6 +128,7 @@ const VideoPlayer = ({ url, index, handleLiked }) => {
                 onEnded={() => setPlaying(false)}
                 onTimeUpdate={handleTimeUpdate}
                 onClick={handlePlayPause}
+                onTouchStart={handlePlayPause}
             > <source src="" type="video/webm" />
                 Your browser does not support the video tag.
             </video>
