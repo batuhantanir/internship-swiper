@@ -16,12 +16,9 @@ const VideoPlayer = ({ url, index, handleLiked }) => {
     const THRESHOLD = 300; // milisaniye
 
     const formatTime = (time) => {
-        if (!isNaN(time) && time >= 0) {
-            const minutes = Math.floor(time / 60);
-            const seconds = Math.floor(time % 60);
-            return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-        }
-        return '00:00';
+        const minutes = Math.floor(time / 60);
+        const seconds = Math.floor(time % 60);
+        return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
     };
 
     const handleDoubleClick = () => {
@@ -34,32 +31,15 @@ const VideoPlayer = ({ url, index, handleLiked }) => {
         setLastClickTime(currentTime);
     };
 
-    const handlePlayPause = async () => {
+    const handlePlayPause = () => {
         const video = videoRef.current;
 
-        try {
-            // Tarayıcı autoplay için izin veriyorsa doğrudan oynat
-            await video.play();
+        if (video.paused) {
+            video.play();
             setPlaying(true);
-        } catch (error) {
-            if (error.name === 'NotAllowedError' || error.name === 'AbortError') {
-                // Kullanıcıdan izin iste
-                const userPermission = window.confirm('Bu videoyu otomatik oynatmak ister misiniz?');
-
-                if (userPermission) {
-                    try {
-                        // Kullanıcı izin verdiyse tekrar oynat
-                        await video.play();
-                        setPlaying(true);
-                    } catch (error) {
-                        // Kullanıcı izin vermedi veya başka bir hata oluştu
-                        console.error('Otomatik oynatma izni alınamadı:', error);
-                    }
-                }
-            } else {
-                // Diğer hata durumları
-                console.error('Otomatik oynatma hatası:', error);
-            }
+        } else {
+            video.pause();
+            setPlaying(false);
         }
     };
 
@@ -93,26 +73,44 @@ const VideoPlayer = ({ url, index, handleLiked }) => {
             setShowVolumeControls(true);
         } else {
             // Küçük bir gecikme ekleyerek kullanıcının kontrol paneline gitmesine izin veriyoruz
-            setTimeout(() => setShowVolumeControls(false), 700);
+            setTimeout(() => setShowVolumeControls(false), 1500);
         }
     };
 
     useEffect(() => {
-        const video = videoRef.current;
-        setDuration(!isNaN(video.duration) ? video.duration : 0);
-    }, [videoRef.current?.duration]);
+        const video = videoRef?.current;
+        setDuration(video.duration ? video.duration : 0);
+    }, [videoRef?.current?.duration]);
 
     const handleIntersection = (entries) => {
         entries.forEach((entry) => {
             setIsVisible(entry.isIntersecting);
-
-            if (entry.isIntersecting) {
+            console.log(entry);
+            
+            if (entry.isIntersecting && videoRef.current.src === "") {
+                // Video is intersecting, and source is not set, set the source
                 videoRef.current.src = url;
+    
+                // Play the video
+                videoRef.current.play().then(() => {
+                    // Once video is playing, unmute it
+                    setTimeout(() => {
+                        videoRef.current.muted = false;
+                    }, 200);
+                }).catch((error) => {
+                    console.error("Error playing the video:", error);
+                });
+                setPlaying(false);
+            }
+    
+            if (entry.isIntersecting === false) {
+                // Video is not intersecting, pause it
+                videoRef.current && videoRef.current.pause();
+                setPlaying(false);
+            } else {
+                // Video is intersecting, resume playing
                 setPlaying(true);
                 videoRef.current && videoRef.current.play();
-            } else {
-                setPlaying(false);
-                videoRef.current && videoRef.current.pause();
             }
         });
     };
@@ -134,7 +132,7 @@ const VideoPlayer = ({ url, index, handleLiked }) => {
     }, [videoRef, url]);
 
     useEffect(() => {
-        if (!isVisible && videoRef.current) {
+        if (!isVisible) {
             videoRef.current.pause();
         }
     }, [isVisible]);
@@ -147,13 +145,13 @@ const VideoPlayer = ({ url, index, handleLiked }) => {
                 ref={videoRef}
                 onEnded={() => setPlaying(false)}
                 onTimeUpdate={handleTimeUpdate}
+                muted={true}
                 onClick={handlePlayPause}
                 playsInline={true}
-            >
-                <source src={url} type="video/webm" />
+            > <source src="" type="video/webm" />
                 Your browser does not support the video tag.
             </video>
-            {currentTime === 0 || currentTime !== duration ? (
+            {(currentTime == 0 || currentTime !== duration) && (
                 <div className="absolute bottom-5 left-2 right-0 " onClick={handlePlayPause}>
                     {playing ? (
                         <FaPause className="text-white text-4xl cursor-pointer drop-shadow-sm" />
@@ -161,7 +159,7 @@ const VideoPlayer = ({ url, index, handleLiked }) => {
                         <FaPlay className="text-white text-4xl cursor-pointer drop-shadow-sm" />
                     )}
                 </div>
-            ) : null}
+            )}
             {url && (
                 <div className="absolute bottom-0 left-0 right-0 h-3 bg-gray-300" onClick={handleSeek} ref={progressRef}>
                     <div
@@ -172,9 +170,9 @@ const VideoPlayer = ({ url, index, handleLiked }) => {
             )}
             {url && (
                 <div className="absolute bottom-5 right-2 flex items-center space-x-2 drop-shadow-sm">
-                    <span className="text-white text-sm drop-shadow-sm">{!isNaN(currentTime) && formatTime(currentTime)}</span>
+                    <span className="text-white text-sm drop-shadow-sm">{currentTime != NaN && formatTime(currentTime)}</span>
                     <span className="text-white text-sm drop-shadow-sm">/</span>
-                    <span className="text-white text-sm drop-shadow-sm">{!isNaN(duration) && formatTime(duration)}</span>
+                    <span className="text-white text-sm drop-shadow-sm">{duration != NaN && formatTime(duration)}</span>
                     <div
                         className=" flex flex-col items-center"
                         onMouseEnter={() => handleVolumeControlsHover(true)}
@@ -183,10 +181,10 @@ const VideoPlayer = ({ url, index, handleLiked }) => {
                         onTouchEnd={() => handleVolumeControlsHover(false)}
                         ref={volumeControlsRef}
                     >
-                        <FaVolumeUp className="text-white text-2xl cursor-pointer" />
+                        <FaVolumeUp className="text-white text-2xl cursor-pointer hidden md:block" />
                         {showVolumeControls && (
                             <input
-                                className="absolute -top-12 rotate-[270deg] w-20 h-2"
+                                className="absolute hidden md:block -top-12 rotate-[270deg] w-20 h-2"
                                 type="range"
                                 min="0"
                                 max="1"
@@ -199,7 +197,7 @@ const VideoPlayer = ({ url, index, handleLiked }) => {
                     </div>
                 </div>
             )}
-            {currentTime === duration && currentTime !== 0 && (
+            {(currentTime === duration && currentTime != 0) && (
                 <div className="absolute bottom-5 left-2 drop-shadow-sm">
                     <div
                         className="cursor-pointer drop-shadow-2xl"
@@ -209,6 +207,7 @@ const VideoPlayer = ({ url, index, handleLiked }) => {
                     </div>
                 </div>
             )}
+
         </div>
     );
 };
