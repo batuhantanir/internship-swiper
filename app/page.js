@@ -290,7 +290,7 @@ export default function Home() {
                        opacity-80
                        `} />
                   </div>
-                  <div className="hidden lg:flex flex-col px-4 xl:px-5 py-4 border-b min-h-[30vh] h-full max-h-[35vh] overflow-x-hidden overflow-y-auto col-start-2 ">
+                  <div className="hidden lg:flex flex-col px-4 xl:px-5 py-4 border-b min-h-[30vh] h-full max-h-[30vh] overflow-x-hidden overflow-y-auto col-start-2 ">
                     <div className="">
                       <div className={`h-fit`} id={post.comments[0]?.id} >
                         <span className="mr-2 text-white">{post.username}</span>
