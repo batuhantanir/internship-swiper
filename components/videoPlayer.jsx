@@ -168,7 +168,7 @@ const VideoPlayer = ({ url, index, handleLiked,isVideoMuted, setIsVideoMuted}) =
                     <span className="text-white text-sm drop-shadow-sm">/</span>
                     <span className="text-white text-sm drop-shadow-sm">{duration != NaN && formatTime(duration)}</span>
                     <div
-                        className=" flex flex-col items-center bg-red-500"
+                        className=" flex flex-col items-center "
                         onMouseEnter={() => handleVolumeControlsHover(true)}
                         onMouseLeave={() => handleVolumeControlsHover(false)}
                         ref={volumeControlsRef}
