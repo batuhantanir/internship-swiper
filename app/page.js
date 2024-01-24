@@ -19,6 +19,7 @@ export default function Home() {
   const [openCommentPage, setOpenCommentPage] = useState(undefined);
   const [openFullCaption, setOpenFullCaption] = useState(undefined);
   const [liked, setLiked] = useState(undefined);
+  const [isVideoMuted, setIsVideoMuted] = useState(true);
   const openCarouselRef = useRef(null);
   const commentRef = useRef(null);
   const popoverRef = useRef(null);
@@ -260,6 +261,8 @@ export default function Home() {
                         index={index}
                         handleLiked={handleLiked}
                         loading="lazy"
+                        isVideoMuted={isVideoMuted}
+                        setIsVideoMuted={setIsVideoMuted}
                       />
                     ) : (
                       <Image

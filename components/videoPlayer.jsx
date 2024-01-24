@@ -1,12 +1,11 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { FaPlay, FaPause, FaRedo, FaVolumeUp, FaVolumeMute } from 'react-icons/fa';
 
-const VideoPlayer = ({ url, index, handleLiked }) => {
+const VideoPlayer = ({ url, index, handleLiked,isVideoMuted, setIsVideoMuted}) => {
     const [playing, setPlaying] = useState(false);
     const [currentTime, setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0);
     const [volume, setVolume] = useState(1);
-    const [isVideoMuted, setIsVideoMuted] = useState(true);
     const [isVisible, setIsVisible] = useState(false);
     const [lastClickTime, setLastClickTime] = useState(0);
     const [showVolumeControls, setShowVolumeControls] = useState(false);
@@ -79,7 +78,11 @@ const VideoPlayer = ({ url, index, handleLiked }) => {
     };
 
     useEffect(() => {
-        isVideoMuted == true && setIsVideoMuted(false);
+        if (volume == 0) {
+            setIsVideoMuted(true)
+        } else {
+            setIsVideoMuted(false)
+        }
     }, [volume])
 
 
@@ -152,7 +155,7 @@ const VideoPlayer = ({ url, index, handleLiked }) => {
                 </div>
             )}
             {url && (
-                <div className="absolute bottom-0 left-0 right-0 h-3 bg-gray-300" onClick={handleSeek} ref={progressRef}>
+                <div className="absolute bottom-0  left-0 right-0 h-3 bg-gray-300" onClick={handleSeek} ref={progressRef}>
                     <div
                         className="h-full bg-gray-500"
                         style={{ width: `${(currentTime / duration) * 100}%` }}
@@ -165,11 +168,21 @@ const VideoPlayer = ({ url, index, handleLiked }) => {
                     <span className="text-white text-sm drop-shadow-sm">/</span>
                     <span className="text-white text-sm drop-shadow-sm">{duration != NaN && formatTime(duration)}</span>
                     <div
-                        className=" flex flex-col items-center"
+                        className=" flex flex-col items-center bg-red-500"
                         onMouseEnter={() => handleVolumeControlsHover(true)}
                         onMouseLeave={() => handleVolumeControlsHover(false)}
                         ref={volumeControlsRef}
                     >
+                        <input
+                            className={`hidden ${showVolumeControls ? "md:block" : "hidden"} absolute    -top-12 rotate-[270deg] w-20 h-2`}
+                            type="range"
+                            min="0"
+                            max="1"
+                            step="0.01"
+                            value={volume}
+                            ref={volumeRef}
+                            onChange={handleVolumeChange}
+                        />
                         {isVideoMuted ? <FaVolumeMute
                             className="text-white text-2xl cursor-pointer"
                             onClick={() => {
@@ -179,18 +192,8 @@ const VideoPlayer = ({ url, index, handleLiked }) => {
                             : <FaVolumeUp onClick={() => {
                                 setIsVideoMuted(true)
                                 setVolume(0)
-                            }} className="text-white text-2xl  cursor-pointer hidden md:block" />}
+                            }} className="text-white text-2xl  cursor-pointer" />}
 
-                        <input
-                            className={`hidden ${showVolumeControls ? "md:block" : "hidden"} absolute   -top-12 rotate-[270deg] w-20 h-2`}
-                            type="range"
-                            min="0"
-                            max="1"
-                            step="0.01"
-                            value={volume}
-                            ref={volumeRef}
-                            onChange={handleVolumeChange}
-                        />
 
                     </div>
                 </div>

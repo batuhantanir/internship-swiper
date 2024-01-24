@@ -12,7 +12,7 @@ import artistthumbnail from '@/public/assets/image/artistthumbnail.jpg'
 import foodthumbnail from '@/public/assets/image/foodthumbnail.jpg'
 
 const posts = [
-    
+
     {
         "id": 1,
         "username": "batuhantanir",
@@ -25,6 +25,33 @@ const posts = [
         "comments": [
         ],
         "timestamp": "2024-01-10T17:45:00"
+    },
+    {
+        "id": 15,
+        "username": "foodie",
+        "caption": "Lezzetli bir yemek tarifi! 🍲 #cooking",
+        "image_url": foodthumbnail,
+        "video_url": 'assets/video/food.mp4',
+        "type": "video",
+        "category": "food",
+        "likes": 250,
+        "saveBook": true,
+        "isLiked": false,
+        "comments": [
+            {
+                "id": 1101,
+                "username": "chef",
+                "comment": "Bu tarifi deneyeceğim!",
+                "timestamp": "2024-01-20T14:30:00"
+            },
+            {
+                "id": 1102,
+                "username": "foodlover",
+                "comment": "Harika görünüyor!",
+                "timestamp": "2024-01-20T14:45:00"
+            }
+        ],
+        "timestamp": "2024-01-20T14:15:00"
     },
     {
         "id": 2,
@@ -226,597 +253,597 @@ const posts = [
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
                 "timestamp": "2024-01-16T19:00:00"
-            },{
+            }, {
                 "id": 702,
                 "username": "trendsetter",
                 "comment": "Moda dünyasında yeni trendler neler?",
@@ -824,7 +851,7 @@ const posts = [
             },
         ],
         "timestamp": "2024-01-16T18:30:00"
-    }, 
+    },
     {
         "id": 8,
         "username": "petlover",
