@@ -37,7 +37,6 @@ const VideoPlayer = ({ url, index, handleLiked }) => {
         if (video.paused) {
             video.play();
             setPlaying(true);
-            videoRef.current.muted == true && (videoRef.current.muted = false);
         } else {
             video.pause();
             setPlaying(false);
@@ -163,17 +162,17 @@ const VideoPlayer = ({ url, index, handleLiked }) => {
                         className=" flex flex-col items-center"
                         onMouseEnter={() => handleVolumeControlsHover(true)}
                         onMouseLeave={() => handleVolumeControlsHover(false)}
-                        onTouchStart={() => handleVolumeControlsHover(true)}
-                        onTouchEnd={() => handleVolumeControlsHover(false)}
                         ref={volumeControlsRef}
                     >
                         {videoRef.current && videoRef.current.muted ? <FaVolumeMute
-                            className="text-white text-2xl"
+                            className="text-white text-2xl cursor-pointer"
                             onClick={() => {
-                                videoRef.current && (videoRef.current.play())
+                                
                                 videoRef.current && (videoRef.current.muted = false)
                             }} />
-                            : <FaVolumeUp className="text-white text-2xl  cursor-pointer hidden md:block" />}
+                            : <FaVolumeUp onClick={() => {
+                                videoRef.current && (videoRef.current.muted = true)
+                            }} className="text-white text-2xl  cursor-pointer hidden md:block" />}
                         {showVolumeControls && (
                             <input
                                 className="absolute hidden md:block -top-12 rotate-[270deg] w-20 h-2"
