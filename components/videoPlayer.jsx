@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { FaPlay, FaPause, FaRedo, FaVolumeUp } from 'react-icons/fa';
+import { FaPlay, FaPause, FaRedo, FaVolumeUp, FaVolumeMute } from 'react-icons/fa';
 
 const VideoPlayer = ({ url, index, handleLiked }) => {
     const [playing, setPlaying] = useState(false);
@@ -37,6 +37,7 @@ const VideoPlayer = ({ url, index, handleLiked }) => {
         if (video.paused) {
             video.play();
             setPlaying(true);
+            videoRef.current.muted == true && (videoRef.current.muted = false);
         } else {
             video.pause();
             setPlaying(false);
@@ -86,31 +87,16 @@ const VideoPlayer = ({ url, index, handleLiked }) => {
         entries.forEach((entry) => {
             setIsVisible(entry.isIntersecting);
             console.log(entry);
-            
-            if (entry.isIntersecting && videoRef.current.src === "") {
-                // Video is intersecting, and source is not set, set the source
-                videoRef.current.src = url;
-    
-                // Play the video
-                videoRef.current.play().then(() => {
-                    // Once video is playing, unmute it
-                    setTimeout(() => {
-                        videoRef.current.muted = false;
-                    }, 200);
-                }).catch((error) => {
-                    console.error("Error playing the video:", error);
-                });
-                setPlaying(false);
+            if (videoRef.current.src == "") {
+                entry.isIntersecting && (videoRef.current.src = url);
             }
-    
-            if (entry.isIntersecting === false) {
-                // Video is not intersecting, pause it
-                videoRef.current && videoRef.current.pause();
-                setPlaying(false);
+
+            if (entry.isIntersecting) {
+                setPlaying(true)
+                videoRef.current && videoRef.current.play()
             } else {
-                // Video is intersecting, resume playing
-                setPlaying(true);
-                videoRef.current && videoRef.current.play();
+                setPlaying(false)
+                videoRef.current && videoRef.current.pause()
             }
         });
     };
@@ -181,7 +167,13 @@ const VideoPlayer = ({ url, index, handleLiked }) => {
                         onTouchEnd={() => handleVolumeControlsHover(false)}
                         ref={volumeControlsRef}
                     >
-                        <FaVolumeUp className="text-white text-2xl cursor-pointer hidden md:block" />
+                        {videoRef.current && videoRef.current.muted ? <FaVolumeMute
+                            className="text-white text-2xl"
+                            onClick={() => {
+                                videoRef.current && (videoRef.current.play())
+                                videoRef.current && (videoRef.current.muted = false)
+                            }} />
+                            : <FaVolumeUp className="text-white text-2xl  cursor-pointer hidden md:block" />}
                         {showVolumeControls && (
                             <input
                                 className="absolute hidden md:block -top-12 rotate-[270deg] w-20 h-2"
