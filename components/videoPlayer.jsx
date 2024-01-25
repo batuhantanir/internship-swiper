@@ -94,7 +94,6 @@ const VideoPlayer = ({ url, index, handleLiked,isVideoMuted, setIsVideoMuted}) =
     const handleIntersection = (entries) => {
         entries.forEach((entry) => {
             setIsVisible(entry.isIntersecting);
-            console.log(entry);
             if (videoRef.current.src == "") {
                 entry.isIntersecting && (videoRef.current.src = url);
             }
